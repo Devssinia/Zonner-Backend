@@ -1,45 +1,20 @@
 type Mutation {
-  fileupload(
-    name: String!
-    type: String!
-    base64str: String!
-  ): fileoutput
-}
-
-type Mutation {
   login(
-    inputs: inputs!
-  ): outputs
+    arg1: login_input!
+  ): SampleOutput
 }
 
-type Mutation {
-  signup(
-    input: input_reg!
-  ): output_reg
-}
-
-input inputs {
-  phone: String!
+input SampleInput {
+  username: String!
   password: String!
 }
 
-input input_reg {
-  fname: String!
-  lname: String!
-  phone: String!
+input login_input {
+  username: String!
   password: String!
 }
 
-type outputs {
-  accestoken: String!
-  id: String!
-}
-
-type output_reg {
-  success: String!
-}
-
-type fileoutput {
-  file_path: String!
+type SampleOutput {
+  accessToken: String!
 }
 

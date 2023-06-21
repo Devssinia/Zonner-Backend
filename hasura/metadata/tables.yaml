@@ -1,0 +1,12 @@
+- table:
+    name: jnjn
+    schema: public
+- table:
+    name: new
+    schema: public
+- table:
+    name: sdffs
+    schema: public
+- table:
+    name: tested
+    schema: public
