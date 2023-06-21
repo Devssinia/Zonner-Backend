@@ -1,0 +1,18 @@
+table:
+  name: chats
+  schema: public
+object_relationships:
+  - name: business
+    using:
+      foreign_key_constraint_on: bussiness_id
+  - name: customer
+    using:
+      foreign_key_constraint_on: customer_id
+array_relationships:
+  - name: messages
+    using:
+      foreign_key_constraint_on:
+        column: chat_id
+        table:
+          name: messages
+          schema: public

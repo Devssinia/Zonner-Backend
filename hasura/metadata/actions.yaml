@@ -1,0 +1,30 @@
+actions:
+  - name: fileupload
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/file_upload
+    permissions:
+      - role: admins
+  - name: login
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/login
+    permissions:
+      - role: admins
+      - role: technician
+      - role: operator
+      - role: public
+  - name: signup
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:3000/signup
+custom_types:
+  enums: []
+  input_objects:
+    - name: inputs
+    - name: input_reg
+  objects:
+    - name: outputs
+    - name: output_reg
+    - name: fileoutput
+  scalars: []

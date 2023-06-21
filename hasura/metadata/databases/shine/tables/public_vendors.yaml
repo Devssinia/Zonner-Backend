@@ -1,0 +1,11 @@
+table:
+  name: vendors
+  schema: public
+array_relationships:
+  - name: businesses
+    using:
+      foreign_key_constraint_on:
+        column: vendor_id
+        table:
+          name: businesses
+          schema: public

@@ -1,0 +1,11 @@
+table:
+  name: authentications
+  schema: public
+array_relationships:
+  - name: addresses
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          name: addresses
+          schema: public
