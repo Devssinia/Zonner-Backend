@@ -6,7 +6,7 @@ actions:
   - name: login
     definition:
       kind: synchronous
-      handler: '{{ACTION_BASE_URL}}/login'
+      handler: http://localhost:2001/login
   - name: rider_signup
     definition:
       kind: synchronous
