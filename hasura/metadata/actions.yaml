@@ -1,6 +1,24 @@
-actions: []
+actions:
+  - name: customer_signup
+    definition:
+      kind: synchronous
+      handler: http://localhost:3000/customer_signup
+  - name: login
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/login'
+  - name: rider_signup
+    definition:
+      kind: synchronous
+      handler: http://localhost:3000/rider_signup
+  - name: vendor_signup
+    definition:
+      kind: synchronous
+      handler: http://localhost:3000/vendor_signup
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+    - name: login_output
+    - name: signup_output
   scalars: []

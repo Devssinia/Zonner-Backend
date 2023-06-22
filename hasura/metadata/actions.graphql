@@ -1,0 +1,33 @@
+type Mutation {
+  customer_signup(
+    first_name: String!
+  ): signup_output!
+}
+
+type Mutation {
+  login(
+    phone_no: String!
+    password: String!
+  ): login_output!
+}
+
+type Mutation {
+  rider_signup(
+    first_name: String!
+  ): signup_output!
+}
+
+type Mutation {
+  vendor_signup(
+    first_name: String!
+  ): signup_output!
+}
+
+type login_output {
+  access_token: String!
+}
+
+type signup_output {
+  success: String!
+}
+
