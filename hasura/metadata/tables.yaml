@@ -1,12 +1,323 @@
 - table:
-    name: jnjn
+    name: addresses
+    schema: public
+  object_relationships:
+    - name: authentication
+      using:
+        foreign_key_constraint_on: user_id
+- table:
+    name: authentications
+    schema: public
+  array_relationships:
+    - name: addresses
+      using:
+        foreign_key_constraint_on:
+          column: user_id
+          table:
+            name: addresses
+            schema: public
+- table:
+    name: business_categories
+    schema: public
+  array_relationships:
+    - name: businesses
+      using:
+        foreign_key_constraint_on:
+          column: business_category_id
+          table:
+            name: businesses
+            schema: public
+    - name: product_categories
+      using:
+        foreign_key_constraint_on:
+          column: businesses_category_id
+          table:
+            name: product_categories
+            schema: public
+- table:
+    name: business_reviews
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: business_id
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+- table:
+    name: businesses
+    schema: public
+  object_relationships:
+    - name: business_category
+      using:
+        foreign_key_constraint_on: business_category_id
+    - name: vendor
+      using:
+        foreign_key_constraint_on: vendor_id
+  array_relationships:
+    - name: business_reviews
+      using:
+        foreign_key_constraint_on:
+          column: business_id
+          table:
+            name: business_reviews
+            schema: public
+    - name: businesses_favorites
+      using:
+        foreign_key_constraint_on:
+          column: business_id
+          table:
+            name: businesses_favorites
+            schema: public
+    - name: chats
+      using:
+        foreign_key_constraint_on:
+          column: bussiness_id
+          table:
+            name: chats
+            schema: public
+    - name: orders
+      using:
+        foreign_key_constraint_on:
+          column: business_id
+          table:
+            name: orders
+            schema: public
+    - name: products
+      using:
+        foreign_key_constraint_on:
+          column: businesses_id
+          table:
+            name: products
+            schema: public
+    - name: statuses
+      using:
+        foreign_key_constraint_on:
+          column: business_id
+          table:
+            name: statuses
+            schema: public
+- table:
+    name: businesses_favorites
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: business_id
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+- table:
+    name: chats
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: bussiness_id
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+  array_relationships:
+    - name: messages
+      using:
+        foreign_key_constraint_on:
+          column: chat_id
+          table:
+            name: messages
+            schema: public
+- table:
+    name: customers
+    schema: public
+  array_relationships:
+    - name: business_reviews
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: business_reviews
+            schema: public
+    - name: businesses_favorites
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: businesses_favorites
+            schema: public
+    - name: chats
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: chats
+            schema: public
+    - name: orders
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: orders
+            schema: public
+    - name: product_reviews
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: product_reviews
+            schema: public
+    - name: wish_lists
+      using:
+        foreign_key_constraint_on:
+          column: customer_id
+          table:
+            name: wish_lists
+            schema: public
+- table:
+    name: delivery_requests
     schema: public
 - table:
-    name: new
+    name: messages
+    schema: public
+  object_relationships:
+    - name: chat
+      using:
+        foreign_key_constraint_on: chat_id
+- table:
+    name: order_items
+    schema: public
+  object_relationships:
+    - name: product
+      using:
+        foreign_key_constraint_on: product_id
+- table:
+    name: orders
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: business_id
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+- table:
+    name: product_categories
+    schema: public
+  object_relationships:
+    - name: business_category
+      using:
+        foreign_key_constraint_on: businesses_category_id
+  array_relationships:
+    - name: products
+      using:
+        foreign_key_constraint_on:
+          column: product_category_id
+          table:
+            name: products
+            schema: public
+- table:
+    name: product_reviews
+    schema: public
+  object_relationships:
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+    - name: product
+      using:
+        foreign_key_constraint_on: product_id
+- table:
+    name: products
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: businesses_id
+    - name: product_category
+      using:
+        foreign_key_constraint_on: product_category_id
+  array_relationships:
+    - name: order_items
+      using:
+        foreign_key_constraint_on:
+          column: product_id
+          table:
+            name: order_items
+            schema: public
+    - name: product_reviews
+      using:
+        foreign_key_constraint_on:
+          column: product_id
+          table:
+            name: product_reviews
+            schema: public
+    - name: variant_categories
+      using:
+        foreign_key_constraint_on:
+          column: product_id
+          table:
+            name: variant_categories
+            schema: public
+    - name: wish_lists
+      using:
+        foreign_key_constraint_on:
+          column: product_id
+          table:
+            name: wish_lists
+            schema: public
+- table:
+    name: riders
     schema: public
 - table:
-    name: sdffs
+    name: roles
     schema: public
 - table:
-    name: tested
+    name: statuses
     schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: business_id
+- table:
+    name: variant_categories
+    schema: public
+  object_relationships:
+    - name: product
+      using:
+        foreign_key_constraint_on: product_id
+  array_relationships:
+    - name: variants
+      using:
+        foreign_key_constraint_on:
+          column: variant_category_id
+          table:
+            name: variants
+            schema: public
+- table:
+    name: variants
+    schema: public
+  object_relationships:
+    - name: variant_category
+      using:
+        foreign_key_constraint_on: variant_category_id
+- table:
+    name: vehicles
+    schema: public
+- table:
+    name: vendors
+    schema: public
+  array_relationships:
+    - name: businesses
+      using:
+        foreign_key_constraint_on:
+          column: vendor_id
+          table:
+            name: businesses
+            schema: public
+- table:
+    name: wish_lists
+    schema: public
+  object_relationships:
+    - name: customer
+      using:
+        foreign_key_constraint_on: customer_id
+    - name: product
+      using:
+        foreign_key_constraint_on: product_id

@@ -1,13 +1,6 @@
-actions:
-  - name: login
-    definition:
-      kind: synchronous
-      handler: http://localhost:3000/login
+actions: []
 custom_types:
   enums: []
-  input_objects:
-    - name: SampleInput
-    - name: login_input
-  objects:
-    - name: SampleOutput
+  input_objects: []
+  objects: []
   scalars: []

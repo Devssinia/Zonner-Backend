@@ -7,6 +7,7 @@
     "author": "",
     "license": "ISC",
     "scripts": {
+      "local":"nodemon --exec babel-node server.js", 
       "dev": "sudo docker-compose up -d --remove-orphans && npm run all:log ",
       "down": "sudo docker-compose down",
       "all:log": "sudo docker-compose logs -f --tail 100",

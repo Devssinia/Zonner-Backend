@@ -7,18 +7,16 @@ RUN mkdir docker-uploads
 ARG EXPRESS_PORT
 EXPOSE ${EXPRESS_PORT}
 
-RUN apk add yarn
 RUN apk add --no-cache bash
 
-# Install Babel packages
-COPY package.json yarn.lock ./
-RUN yarn install
+# Install NPM packages
+COPY package.json package-lock.json ./
+RUN npm install
 
 # Install Nodemon globally
-RUN yarn global add nodemon
+RUN npm install -g nodemon
 
 COPY .babelrc ./
-
 COPY server.js ./
 COPY express ./express/
 

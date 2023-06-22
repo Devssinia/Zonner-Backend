@@ -1,5 +1,5 @@
 version: 2
-endpoint: http://localhost:2000
+endpoint: http://64.226.115.135
 metadata_directory: metadata
 actions:
   kind: synchronous
