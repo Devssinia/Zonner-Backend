@@ -7,25 +7,25 @@
     "author": "",
     "license": "ISC",
     "scripts": {
-      "local":"nodemon --exec babel-node server.js", 
-      "dev": "sudo docker-compose up -d --remove-orphans && npm run all:log ",
-      "down": "sudo docker-compose down",
-      "all:log": "sudo docker-compose logs -f --tail 100",
-      "express:log": "sudo docker-compose logs -f --tail 100 zonner_express_app",
-      "graphql:log": "sudo docker-compose logs -f --tail 100 zonner_graphql_engine",
-      "hasura:init": "sudo hasura init hasura",
-      "hasura": "hasura --project hasura --envfile ../.env",
-      "hasura:prod": "hasura --project hasura --envfile ../.env.prod",
-      "console": "npm run hasura console --api-port 2002 --console-port 2003",
-      "console:prod": "npm run hasura:prod console --api-port 4074 --console-port 4075",
-      "migrate": "npm run hasura migrate apply && npm run hasura metadata apply",
-      "migrate:prod": "npm run hasura:prod migrate apply && npm run hasura metadata apply",
-      "migrate:status": "npm run hasura migrate status",
-      "migrate:status:prod": "npm run hasura:prod migrate status",
-      "seed": "npm run hasura seeds apply",
-      "rebuild": "sudo docker-compose build zonner_express_app && npm run dev"
+        "local": "nodemon --exec babel-node server.js",
+        "dev": "sudo docker-compose up -d --remove-orphans && npm run all:log ",
+        "down": "sudo docker-compose down",
+        "all:log": "sudo docker-compose logs -f --tail 100",
+        "express:log": "sudo docker-compose logs -f --tail 100 zonner_express_app",
+        "graphql:log": "sudo docker-compose logs -f --tail 100 zonner_graphql_engine",
+        "hasura:init": "sudo hasura init hasura",
+        "hasura": "hasura --project hasura --envfile ../.env",
+        "hasura:prod": "hasura --project hasura --envfile ../.env.prod",
+        "console": "npm run hasura console --api-port 2002 --console-port 2003",
+        "console:prod": "npm run hasura:prod console --api-port 4074 --console-port 4075",
+        "migrate": "npm run hasura migrate apply && npm run hasura metadata apply",
+        "migrate:prod": "npm run hasura:prod migrate apply && npm run hasura metadata apply",
+        "migrate:status": "npm run hasura migrate status",
+        "migrate:status:prod": "npm run hasura:prod migrate status",
+        "seed": "npm run hasura seeds apply",
+        "rebuild": "sudo docker-compose build zonner_express_app && npm run dev",
+        "handle": "cd hasura && hasura metadata export --admin-secret 'secret' && hasura migrate create 'forced_migration' --from-server --admin-secret 'secret'"
     },
-
     "devDependencies": {
         "@babel/cli": "^7.13.10",
         "@babel/core": "^7.13.10",
@@ -38,11 +38,11 @@
         "eslint-config-prettier": "^8.1.0",
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-prettier": "^3.3.1",
-        "nodemon": "^2.0.7",
-        "hasura-cli": "^1.3.3",
+        "hasura-cli": "^2.26.0",
+        "nodemon": "^2.0.22",
         "prettier": "^2.2.1"
-      },
-      "dependencies": {
+    },
+    "dependencies": {
         "bcrypt": "^5.1.0",
         "body": "^5.1.0",
         "cloudinary": "^1.35.0",
@@ -52,11 +52,7 @@
         "graphql-request": "^5.2.0",
         "jsonwebtoken": "^9.0.0",
         "jwt-decode": "^3.1.2",
-        "mysql": "^2.18.1",
-        "mysql2": "^3.2.4",
         "pm2": "^5.3.0",
         "sequelize": "^6.31.1"
-      }
-    
-  }
-  
+    }
+}
