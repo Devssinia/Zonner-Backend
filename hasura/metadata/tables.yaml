@@ -262,6 +262,21 @@
           table:
             name: wish_lists
             schema: public
+  select_permissions:
+    - role: anonymous
+      permission:
+        columns:
+          - quantity_in_stock
+          - product_discount_price
+          - product_price
+          - product_description
+          - product_name
+          - created_at
+          - updated_at
+          - businesses_id
+          - product_category_id
+          - product_id
+        filter: {}
 - table:
     name: riders
     schema: public
