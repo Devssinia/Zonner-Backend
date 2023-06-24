@@ -10,10 +10,6 @@ app.get('/', async (req, res) => {
   res.send('hello world')
 })
 app.post('/:route', async (req, res) => {
-  console.log("Bete Congratulation You did it")
- return res.status(200).json({      
-    access_token: 'hello world I Love you'     
-})
 
   try {
     const handler = require(`./express/src/actions/${req.params.route}`)
