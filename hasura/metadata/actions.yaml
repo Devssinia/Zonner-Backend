@@ -6,7 +6,7 @@ actions:
   - name: login
     definition:
       kind: synchronous
-      handler: https://dba1-213-55-102-49.in.ngrok.io/login
+      handler: https://dd64-213-55-102-49.in.ngrok.io/login
     permissions:
       - role: anonymous
   - name: rider_signup
