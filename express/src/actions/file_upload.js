@@ -4,9 +4,8 @@ const handler = async (req, res) => {
     try {
       const { name,type,base64str } = req.body.input
       const result = await cloudinary.uploader.upload(`data:image/jepg;base64,${base64str}`)
-      console.log(result.url)
       return res.json({
-        file_path: result.url
+        image_url: result.url
       })
     }
     catch (e) {

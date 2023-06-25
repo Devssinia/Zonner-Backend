@@ -3,24 +3,51 @@ actions:
     definition:
       kind: synchronous
       handler: http://localhost:2001/customer_signup
+    permissions:
+      - role: rider
+      - role: vendor
+      - role: zadmin
+      - role: anonymous
+      - role: customer
+  - name: file_upload
+    definition:
+      kind: synchronous
+      handler: http://localhost:2001/file_upload
   - name: login
     definition:
       kind: synchronous
       handler: https://7e40-213-55-102-49.in.ngrok.io/login
     permissions:
+      - role: zadmin
+      - role: vendor
+      - role: customer
+      - role: rider
       - role: anonymous
   - name: rider_signup
     definition:
       kind: synchronous
-      handler: http://localhost:2001/rider_signup
+      handler: https://9739-213-55-102-49.in.ngrok.io/rider_signup
+    permissions:
+      - role: anonymous
+      - role: zadmin
+      - role: vendor
+      - role: rider
+      - role: customer
   - name: vendor_signup
     definition:
       kind: synchronous
       handler: http://localhost:3000/vendor_signup
+    permissions:
+      - role: anonymous
+      - role: zadmin
+      - role: vendor
+      - role: rider
+      - role: customer
 custom_types:
   enums: []
   input_objects: []
   objects:
     - name: login_output
     - name: signup_output
+    - name: file_upload_output
   scalars: []
