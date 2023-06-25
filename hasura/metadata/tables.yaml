@@ -8,6 +8,10 @@
 - table:
     name: authentications
     schema: public
+  object_relationships:
+    - name: role
+      using:
+        foreign_key_constraint_on: role_id
   array_relationships:
     - name: addresses
       using:
@@ -304,6 +308,14 @@
 - table:
     name: roles
     schema: public
+  array_relationships:
+    - name: authentications
+      using:
+        foreign_key_constraint_on:
+          column: role_id
+          table:
+            name: authentications
+            schema: public
 - table:
     name: statuses
     schema: public

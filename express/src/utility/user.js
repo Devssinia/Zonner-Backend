@@ -1,16 +1,22 @@
-import client from "../configuration/apollo.config";
-const QUERY_BY = `
-query MyQuery($adress_id: uuid = "") {
-    addresses_by_pk(adress_id: $adress_id) {
-      address_line_one
+import client from '../configuration/hasura_client'
+const QUERY_USER_BY_PHONE = `
+query MyQuery($phone_no: String = "") {
+  authentications(where: {phone_no: {_eq: $phone_no}}) {
+    password
+    phone_no
+    user_id
+    status
+    role {
+      role_name
+      role_id
     }
   }
+}
+
   `
-  User({
-    adress_id: 1
-})
-const User = async (variables) => {
-    const data = await client.request(QUERY_BY, variables);
-    return data['addresses_by_pk']['address_line_one'];
-    }
-export { User}
+const user = async (variables) => {
+  const data = await client.request(QUERY_USER_BY_PHONE, variables)
+  return data['authentications'][0]
+}
+
+export { user }

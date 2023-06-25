@@ -6,11 +6,7 @@ const app = express()
 app.use(bodyParser.json({ limit: '200mb' }))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json({ limit: '200mb' }))
-app.get('/', async (req, res) => {
-  res.send('hello world')
-})
 app.post('/:route', async (req, res) => {
-
   try {
     const handler = require(`./express/src/actions/${req.params.route}`)
     if (!handler) {

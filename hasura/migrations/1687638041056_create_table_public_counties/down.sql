@@ -1,1 +1,1 @@
-DROP TABLE "public"."counties";
+-- DROP TABLE "public"."counties";

@@ -3,9 +3,9 @@ import { GraphQLClient } from 'graphql-request'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-const client = new GraphQLClient(process.env.HASURA_END_POINT || "Hasura URL", {
+const client = new GraphQLClient(process.env.HASURA_GRAPHQL_URL ,{
   headers: {
-    'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET || "secret",
+    'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET
   },
 })
 export default client
