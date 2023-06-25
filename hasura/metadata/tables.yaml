@@ -126,6 +126,17 @@
             name: messages
             schema: public
 - table:
+    name: counties
+    schema: public
+  array_relationships:
+    - name: wards
+      using:
+        foreign_key_constraint_on:
+          column: county_id
+          table:
+            name: wards
+            schema: public
+- table:
     name: customers
     schema: public
   array_relationships:
@@ -280,6 +291,16 @@
 - table:
     name: riders
     schema: public
+  array_relationships:
+    - name: rider_address
+      using:
+        manual_configuration:
+          column_mapping:
+            rider_id: user_id
+          insertion_order: null
+          remote_table:
+            name: addresses
+            schema: public
 - table:
     name: roles
     schema: public
@@ -326,6 +347,13 @@
           table:
             name: businesses
             schema: public
+- table:
+    name: wards
+    schema: public
+  object_relationships:
+    - name: county
+      using:
+        foreign_key_constraint_on: county_id
 - table:
     name: wish_lists
     schema: public

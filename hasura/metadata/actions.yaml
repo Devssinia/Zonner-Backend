@@ -2,7 +2,7 @@ actions:
   - name: customer_signup
     definition:
       kind: synchronous
-      handler: http://localhost:3000/customer_signup
+      handler: http://localhost:2001/customer_signup
   - name: login
     definition:
       kind: synchronous
@@ -10,7 +10,7 @@ actions:
   - name: rider_signup
     definition:
       kind: synchronous
-      handler: http://localhost:3000/rider_signup
+      handler: http://localhost:2001/rider_signup
   - name: vendor_signup
     definition:
       kind: synchronous

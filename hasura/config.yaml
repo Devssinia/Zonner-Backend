@@ -3,4 +3,4 @@ endpoint: http://64.226.115.135
 metadata_directory: metadata
 actions:
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
+  handler_webhook_baseurl: http://localhost:2001

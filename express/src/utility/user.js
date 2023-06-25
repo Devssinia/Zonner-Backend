@@ -13,8 +13,4 @@ const User = async (variables) => {
     const data = await client.request(QUERY_BY, variables);
     return data['addresses_by_pk']['address_line_one'];
     }
-
-
-    
-
 export { User}

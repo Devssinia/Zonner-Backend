@@ -14,7 +14,7 @@ type Mutation {
 type Mutation {
   rider_signup(
     first_name: String!
-    lats_name: String!
+    last_name: String!
   ): signup_output!
 }
 
