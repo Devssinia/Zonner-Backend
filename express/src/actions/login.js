@@ -34,8 +34,8 @@ const handler = async (req, res) => {
 
     let token = jwt.sign(
         {
-          zonner: {
-            'x-hasura-allowed-roles': ['zonner-admin', 'riders', 'customers', 'vendors'],
+          'https://hasura.io/jwt/claims': {
+            'x-hasura-allowed-roles': ['zadmin', 'rider', 'customer', 'vendor'],
             'x-hasura-default-role': user.role.role_name,
             [`x-hasura-${user.role.role_name}-id`]: `${user.user_id}`,
           },
