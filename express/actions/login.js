@@ -1,8 +1,7 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
 import jwt from 'jsonwebtoken'
-import client  from '../configuration/hasura_client'
-// import { User } from './user'
+import { User } from '../utility/user'
 
 const login = async (req, res) => {
   try {
@@ -13,25 +12,7 @@ const login = async (req, res) => {
         message: 'Please provide Both Phone Number and Password',
       })
     }
-    // const { User } = require('../utility/user')
-  
-    const QUERY_USER_BY_PHONE = `query MyQuery($phone_no: String = "") {
-  authentications(where: {phone_no: {_eq: $phone_no}}) {
-    password
-    phone_no
-    user_id
-    status
-    role {
-      role_name
-      role_id
-    }
-  }
-}`
-
-    const data =await client.request(QUERY_USER_BY_PHONE, {
-      phone_no,
-    })
-    const user = data['authentications'][0]     
+  const user = await User({ phone_no })   
     console.log(user)
     if (!user) {
       return res.status(400).json({
