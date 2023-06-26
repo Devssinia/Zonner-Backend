@@ -16,7 +16,7 @@ actions:
   - name: login
     definition:
       kind: synchronous
-      handler: https://8fd8-213-55-102-49.in.ngrok.io/login
+      handler: '{{ACTION_BASE_URL}}/login'
     permissions:
       - role: zadmin
       - role: vendor
