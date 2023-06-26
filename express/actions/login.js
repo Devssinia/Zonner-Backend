@@ -29,7 +29,7 @@ const login = async (req, res) => {
           message: 'Incorrect Credentials',
         })
       }
-      if (user.role === null) 
+      if (user.role === null) {
         return res.status(400).json({
           message: 'Incorrect Credentials',
         })
