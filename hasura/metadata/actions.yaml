@@ -26,7 +26,7 @@ actions:
   - name: rider_signup
     definition:
       kind: synchronous
-      handler: https://9739-213-55-102-49.in.ngrok.io/rider_signup
+      handler: '{{ACTION_BASE_URL}}/rider_signup'
     permissions:
       - role: anonymous
       - role: zadmin
