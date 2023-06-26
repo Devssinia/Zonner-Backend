@@ -16,6 +16,7 @@ const rider_signup = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hashed_password = await bcrypt.hash(password, salt)
     const user = await User({ phone_no })
+    console.log(user);
     if (user) {
       return res.status(400).json({
         message: 'User Already Exists',
