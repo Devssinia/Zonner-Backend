@@ -21,7 +21,7 @@ mutation MyMutation($password: String = "", $user_id: uuid = "") {
 }
 
 `
-const user = async (variables) => {
+const User = async (variables) => {
   const data = await client.request(QUERY_USER_BY_PHONE, variables)
   return data['authentications'][0]
 }
@@ -30,4 +30,4 @@ const insert_password = async (variables) => {
   const data = await client.request(INSERT_USER_PASSWORD, variables)            
   return data?.['update_authentications_by_pk']?.['user_id']         
 }
-export { user,insert_password }
+module.exports =  { User,insert_password }

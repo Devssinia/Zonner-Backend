@@ -14,8 +14,8 @@
         "express:log": "sudo docker-compose logs -f --tail 100 zonner_express_app",
         "graphql:log": "sudo docker-compose logs -f --tail 100 zonner_graphql_engine",
         "hasura:init": "sudo hasura init hasura",
-        "hasura": "hasura --project hasura --envfile ../.env",
-        "hasura:prod": "hasura --project hasura --envfile ../.env.prod",
+        "hasura": "hasura --project hasura --envfile ./.env",
+        "hasura:prod": "hasura --project hasura --envfile ./.env.prod",
         "console": "npm run hasura console --api-port 2002 --console-port 2003",
         "console:prod": "npm run hasura:prod console --api-port 4074 --console-port 4075",
         "migrate": "npm run hasura migrate apply && npm run hasura metadata apply",
@@ -46,13 +46,19 @@
         "bcrypt": "^5.1.0",
         "body": "^5.1.0",
         "cloudinary": "^1.35.0",
+        "cors": "^2.8.5",
+        "cross-fetch": "^3.1.6",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "firebase-admin": "^11.5.0",
         "graphql-request": "^5.2.0",
         "jsonwebtoken": "^9.0.0",
         "jwt-decode": "^3.1.2",
+        "node-fetch": "^2.6.11",
         "pm2": "^5.3.0",
         "sequelize": "^6.31.1"
+    },
+    "directories": {
+        "lib": "express"
     }
 }

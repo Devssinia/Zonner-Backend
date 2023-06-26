@@ -2,7 +2,7 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-RUN mkdir docker-uploads
+# RUN mkdir docker-uploads
 
 ARG EXPRESS_PORT
 EXPOSE ${EXPRESS_PORT}
@@ -16,8 +16,8 @@ RUN npm install
 # Install Nodemon globally
 RUN npm install -g nodemon
 
-COPY .babelrc ./
-COPY server.js ./
-COPY express ./express/
+COPY . .
+# COPY server.js ./
+# COPY express ./express/
 
 CMD ["nodemon", "--exec", "babel-node", "server.js"]
