@@ -3,9 +3,9 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 dotenv.config()
 const app = express()
-app.use(bodyParser.json({ limit: '200mb' }))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.json({ limit: '200mb' }))
+app.use(bodyParser.json({limit: '200mb' }))
+app.use(bodyParser.urlencoded({ extended:true}))
+app.use(express.json({ limit:'200mb' }))
 app.get('/', async (req, res) => {
   res.send('hello world')
 })

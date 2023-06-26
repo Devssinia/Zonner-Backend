@@ -7,7 +7,7 @@ dotenvConfig()
 const handler = async (req, res) => {
     console.log(req.body)
     return res.status(200).json({     
-        access_token: 'hello world'     
+        access_token: 'hello world from Ethiopia'     
     })
     // the login function looks like below
 //   const { phone, password } = req.body.input.inputs
