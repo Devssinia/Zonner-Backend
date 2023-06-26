@@ -5,6 +5,23 @@
     - name: authentication
       using:
         foreign_key_constraint_on: user_id
+  select_permissions:
+    - role: customer
+      permission:
+        columns: []
+        filter: {}
+    - role: rider
+      permission:
+        columns: []
+        filter: {}
+    - role: vendor
+      permission:
+        columns: []
+        filter: {}
+    - role: zadmin
+      permission:
+        columns: []
+        filter: {}
 - table:
     name: authentications
     schema: public

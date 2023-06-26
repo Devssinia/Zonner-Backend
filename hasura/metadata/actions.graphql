@@ -5,6 +5,14 @@ type Mutation {
 }
 
 type Mutation {
+  file_upload(
+    base64str: String!
+    name: String!
+    type: String!
+  ): file_upload_output!
+}
+
+type Mutation {
   login(
     phone_no: String!
     password: String!
@@ -15,6 +23,9 @@ type Mutation {
   rider_signup(
     first_name: String!
     last_name: String!
+    email: String!
+    phone_no: String!
+    password: String!
   ): signup_output!
 }
 
@@ -30,5 +41,9 @@ type login_output {
 
 type signup_output {
   success: String!
+}
+
+type file_upload_output {
+  image_url: String!
 }
 

@@ -10,7 +10,7 @@ BEGIN
   RETURN _new;
 END;
 $$;
-CREATE FUNCTION public.sync_authentications_table() RETURNS trigger
+CREATE IF NOT EXISTS OR REPLACE FUNCTION public.sync_authentications_table() RETURNS trigger
     LANGUAGE plpgsql
     AS $$
 DECLARE
@@ -18,7 +18,8 @@ DECLARE
     role_name text;
 BEGIN
     IF TG_OP = 'INSERT' THEN
-        SELECT role_id, role_name INTO role_id, role_name FROM roles WHERE role_name = TG_TABLE_NAME;
+        SELECT role_id INTO role_id FROM roles WHERE role_name = TG_TABLE_NAME;
+        SELECT role_name INTO role_name FROM roles WHERE role_name = TG_TABLE_NAME;     
         IF role_name = 'customers' THEN
             INSERT INTO "authentications" (user_id, role_id, phone_no)
             VALUES (NEW.customer_id, role_id, NEW.phone_no);
