@@ -3,15 +3,16 @@ import { config as dotenvConfig } from 'dotenv'
 import { user as User } from '../utility/user'
 import { insert_rider as Rider, find_rider } from '../utility/rider'
 import { insert_password as Insert_password } from '../utility/user'
+
 dotenvConfig()
 
-const handler = async (req, res) => {
+const  customer_signup = async (req, res) => {
   const { first_name, last_name, email, phone_no, password } = req.body.input
-  if (!phone_no || !password || !first_name || !last_name || !email) {
-    return res.status(400).json({
-      message: 'Please provide ALL the details',
-    })
-  }
+  // if (!phone_no || !password || !first_name || !last_name || !email) {
+  //   return res.status(400).json({
+  //     message: 'Please provide ALL the details',
+  //   })
+  // }
   const salt = await bcrypt.genSalt(10)
   const hashed_password = await bcrypt.hash(password, salt)
   const user = await User({ phone_no })
@@ -21,7 +22,7 @@ const handler = async (req, res) => {
     })
   }
   let rider_email = await find_rider({ email })
-  console.log(rider_email);
+  console.log(rider_email)
   if (rider_email) {
     return res.status(400).json({
       message: 'Your Email is Already Registered',
@@ -47,4 +48,5 @@ const handler = async (req, res) => {
   })
 }
 
-module.exports = handler
+
+export { customer_signup }

@@ -1,5 +1,6 @@
 import cloudinary from '../configuration/cloudinary.js';
-const handler = async (req, res) => {
+
+const file_upload = async (req, res) => {
     
     try {
       const { name,type,base64str } = req.body.input
@@ -15,4 +16,5 @@ const handler = async (req, res) => {
       })
     }
   }
-  module.exports = handler
+
+export { file_upload }       

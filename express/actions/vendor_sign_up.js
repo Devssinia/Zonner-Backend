@@ -3,9 +3,10 @@ import { config as dotenvConfig } from 'dotenv'
 import { user as User } from '../utility/user'
 import { insert_rider as Rider, find_rider } from '../utility/rider'
 import { insert_password as Insert_password } from '../utility/user'
+
 dotenvConfig()
 
-const handler = async (req, res) => {
+const vendor_signup = async (req, res) => {
   const { first_name, last_name, email, phone_no, password } = req.body.input
   if (!phone_no || !password || !first_name || !last_name || !email) {
     return res.status(400).json({
@@ -47,4 +48,5 @@ const handler = async (req, res) => {
   })
 }
 
-module.exports = handler
+
+export { vendor_signup }   
