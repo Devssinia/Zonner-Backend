@@ -1,7 +1,7 @@
 import cloudinary from '../configuration/cloudinary.js';
 
 const file_upload = async (req, res) => {
-    
+
     try {
       const { name,type,base64str } = req.body.input
       const result = await cloudinary.uploader.upload(`data:image/jepg;base64,${base64str}`)

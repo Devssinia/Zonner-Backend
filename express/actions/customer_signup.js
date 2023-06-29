@@ -48,7 +48,7 @@ const customer_signup = async (req, res) => {
       return res.status(400).json({ message: 'Something went wrong' })
     }
 
-    return res.json({ success: 'Vendor Created Successfully' })
+    return res.json({ success: 'Customer Created Successfully' })
   } catch (error) {
     console.log(error)
     return res.status(400).json({ message: error })

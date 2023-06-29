@@ -15,8 +15,6 @@ import { User } from '../utilities/user'
  */
 const login = async (req, res) => {
   try {
-    console.log('login')
-
     const { phone_no, password } = req.body.input
     if (!phone_no || !password) {
       return res

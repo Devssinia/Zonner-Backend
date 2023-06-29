@@ -41,7 +41,8 @@ const vendor_signup = async (req, res) => {
 
     return res.json({ success: 'Vendor Created Successfully' });
   } catch (error) {
-    return res.status(400).json({ message: error });
+    console.log(error)
+    return res.status(400).json({ message: error.message });
   }
 };
 
