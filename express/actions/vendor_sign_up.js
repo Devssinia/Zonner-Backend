@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
-import { User } from '../utility/user'
+import { User } from '../utilities/user'
 import { insert_vendor, find_vendor } from '../utility/vendor'
 import { insert_password as Insert_password } from '../utility/user'
 dotenvConfig()

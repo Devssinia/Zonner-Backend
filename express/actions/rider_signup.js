@@ -1,9 +1,15 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
-import { User } from '../utility/user'
-import { insert_rider, find_rider } from '../utility/rider'
-import { insert_password as Insert_password } from '../utility/user'
+import { insert_rider, find_rider } from '../utilities/rider'
+import { User,insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
+/**
+ * Creates a new rider account with the provided information.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @return {Promise} A promise that resolves to the response object.
+ */
 const rider_signup = async (req, res) => {
   try {
     const { first_name, last_name, email, phone_no, password } = req.body.input
@@ -47,7 +53,6 @@ const rider_signup = async (req, res) => {
       success: 'Rider Created Successfully',
     })
   } catch (error) {
-    console.log(error)
     return res.status(400).json({
       message: error,
     })

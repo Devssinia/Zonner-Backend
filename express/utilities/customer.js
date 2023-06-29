@@ -29,4 +29,5 @@ const find_customer = async (variables) => {
 }
 
 
-export { insert_customer,find_customer }
+module.exports =  { insert_customer,find_customer }
+// export { insert_customer,find_customer }
