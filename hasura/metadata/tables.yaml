@@ -322,6 +322,22 @@
           remote_table:
             name: addresses
             schema: public
+  select_permissions:
+    - role: rider
+      permission:
+        columns:
+          - is_verified
+          - email
+          - first_name
+          - last_name
+          - phone_no
+          - created_at
+          - updated_at
+          - rider_id
+        filter:
+          rider_id:
+            _eq: X-Hasura-User-Id
+        allow_aggregations: true
 - table:
     name: roles
     schema: public

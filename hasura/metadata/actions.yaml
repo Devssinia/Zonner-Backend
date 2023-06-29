@@ -2,7 +2,7 @@ actions:
   - name: customer_signup
     definition:
       kind: synchronous
-      handler: http://localhost:2001/customer_signup
+      handler: '{{ACTION_BASE_URL}}/customer_signup'
     permissions:
       - role: rider
       - role: vendor
@@ -36,7 +36,7 @@ actions:
   - name: vendor_signup
     definition:
       kind: synchronous
-      handler: http://localhost:3000/vendor_signup
+      handler: '{{ACTION_BASE_URL}}/vendor_signup'
     permissions:
       - role: anonymous
       - role: zadmin

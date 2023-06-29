@@ -1,6 +1,10 @@
 type Mutation {
   customer_signup(
     first_name: String!
+    last_name: String!
+    email: String!
+    phone_no: String!
+    password: String!
   ): signup_output!
 }
 
@@ -32,6 +36,10 @@ type Mutation {
 type Mutation {
   vendor_signup(
     first_name: String!
+    last_name: String!
+    email: String!
+    phone_no: String!
+    password: String!
   ): signup_output!
 }
 

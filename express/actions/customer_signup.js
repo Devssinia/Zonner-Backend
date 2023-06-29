@@ -4,7 +4,7 @@ import { insert_customer, find_customer } from '../utilities/customer'
 import { User, insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
 
-const vendor_signup = async (req, res) => {
+const customer_signup = async (req, res) => {
   try {
     const { first_name, last_name, email, phone_no, password } = req.body.input
 
@@ -55,4 +55,4 @@ const vendor_signup = async (req, res) => {
   }
 }
 
-export default vendor_signup
+export { customer_signup }
