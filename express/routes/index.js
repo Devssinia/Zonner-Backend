@@ -1,10 +1,10 @@
 import express from 'express'
 import { config as dotenvConfig } from 'dotenv'
-import  customer_signup  from '../actions/customer_signup.js'
-// import { rider_signup } from '../actions/rider_signup.js'
-// import { vendor_sign_up } from '../actions/vendor_sign_up.js'
-// import { file_upload } from '../actions/file_upload.js'
-// import { login } from '../actions/login.js'
+import { customer_signup } from '../actions/customer_signup.js'
+import { rider_signup } from '../actions/rider_signup.js'
+import { vendor_sign_up } from '../actions/vendor_sign_up.js'
+import { file_upload } from '../actions/file_upload.js'
+import { login } from '../actions/login.js'
 const router = express.Router()
 
 dotenvConfig()

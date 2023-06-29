@@ -18,7 +18,7 @@ const vendor_signup = async (req, res) => {
       return res.status(400).json({ message: 'User Already Exists' });
     }
 
-    const vendor_email = await find_rider({ email });
+    const vendor_email = await find_vendor({ email });
 
     if (vendor_email) {
       return res.status(400).json({ message: 'Your Email is Already Registered' });
