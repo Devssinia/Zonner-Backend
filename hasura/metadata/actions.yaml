@@ -12,7 +12,7 @@ actions:
   - name: file_upload
     definition:
       kind: synchronous
-      handler: http://localhost:2001/file_upload
+      handler: '{{ACTION_BASE_URL}}/file_upload'
   - name: login
     definition:
       kind: synchronous
