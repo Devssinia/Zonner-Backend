@@ -1,5 +1,5 @@
 import client from '../configuration/hasura_client'
-const QUERY_USER_BY_PHONE = `
+const QUERY_USER_BY_PHONE =`
 query MyQuery($phone_no: String = "") {
   authentications(where: {phone_no: {_eq: $phone_no}}) {
     password

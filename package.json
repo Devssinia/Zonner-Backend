@@ -15,7 +15,7 @@
         "graphql:log": "sudo docker-compose logs -f --tail 100 zonner_graphql_engine",
         "hasura:init": "sudo hasura init hasura",
         "hasura": "hasura --project hasura --envfile ../.env",
-        "hasura:prod": "hasura --project hasura --envfile ../.env.prod",
+        "hasura:prod": "hasura --project hasura --envfile ./.env.prod",
         "console": "npm run hasura console --api-port 2002 --console-port 2003",
         "console:prod": "npm run hasura:prod console --api-port 4074 --console-port 4075",
         "migrate": "npm run hasura migrate apply && npm run hasura metadata apply",

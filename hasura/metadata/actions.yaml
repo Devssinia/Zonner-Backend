@@ -2,7 +2,7 @@ actions:
   - name: customer_signup
     definition:
       kind: synchronous
-      handler: http://localhost:2001/customer_signup
+      handler: '{{ACTION_BASE_URL}}/customer_signup'
     permissions:
       - role: rider
       - role: vendor
@@ -12,11 +12,11 @@ actions:
   - name: file_upload
     definition:
       kind: synchronous
-      handler: http://localhost:2001/file_upload
+      handler: '{{ACTION_BASE_URL}}/file_upload'
   - name: login
     definition:
       kind: synchronous
-      handler: https://8fd8-213-55-102-49.in.ngrok.io/login
+      handler: '{{ACTION_BASE_URL}}/login'
     permissions:
       - role: zadmin
       - role: vendor
@@ -26,7 +26,7 @@ actions:
   - name: rider_signup
     definition:
       kind: synchronous
-      handler: https://9739-213-55-102-49.in.ngrok.io/rider_signup
+      handler: '{{ACTION_BASE_URL}}/rider_signup'
     permissions:
       - role: anonymous
       - role: zadmin
@@ -36,7 +36,7 @@ actions:
   - name: vendor_signup
     definition:
       kind: synchronous
-      handler: http://localhost:3000/vendor_signup
+      handler: '{{ACTION_BASE_URL}}/vendor_signup'
     permissions:
       - role: anonymous
       - role: zadmin

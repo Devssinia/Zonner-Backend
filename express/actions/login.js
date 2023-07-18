@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-import { config as dotenvConfig } from 'dotenv'
 import jwt from 'jsonwebtoken'
 import { User } from '../utility/user'
 
@@ -12,7 +11,7 @@ const login = async (req, res) => {
         message: 'Please provide Both Phone Number and Password',
       })
     }
-  const user = await User({ phone_no })   
+    const user = await User({ phone_no })
     console.log(user)
     if (!user) {
       return res.status(400).json({
@@ -30,7 +29,11 @@ const login = async (req, res) => {
           message: 'Incorrect Credentials',
         })
       }
-
+      if (user.role === null) {
+        return res.status(400).json({
+          message: 'Incorrect Credentials',
+        })
+      }
       let token = jwt.sign(
         {
           'https://hasura.io/jwt/claims': {

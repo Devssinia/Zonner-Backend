@@ -1,30 +1,29 @@
 import client from '../configuration/hasura_client'
-const INSERT_RIDER = `
-mutation MyMutation($email: String = "", $first_name: String = "", $last_name: String = "", $phone_no: String = "") {
-    insert_riders_one(object: {email: $email, first_name: $first_name, last_name: $last_name, phone_no: $phone_no}) {
-      rider_id
+const INSERT_CUSTOMER = `
+mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: String = "") {
+    insert_riders_one(object: {email: $email, full_name:$full_name, phone_no: $phone_no}) {
     }
   } 
 
   `
-
-const FIND_RIDER = `
+const FIND_CUSTOMER = `
 query MyQuery($email: String = "") {
-    riders(where: {email: {_eq: $email}}) {
-      rider_id
+    customers(where: {email: {_eq: $email}}) {
+customer_id
+email
+full_name
     }
   }
  `  
-const insert_rider = async (variables) => {
-  const data = await client.request(INSERT_RIDER, variables)
-  return data['insert_riders_one']['rider_id']
+const insert_customer = async (variables) => {
+  const data = await client.request(INSERT_CUSTOMER, variables)
+  return data['insert_customers_one']['customer_id']
 }
 
-const find_rider = async (variables) => {   
-    const data = await client.request(FIND_RIDER, variables)  
+const find_customer = async (variables) => {   
+    const data = await client.request(FIND_CUSTOMER, variables)  
     console.log(data);       
-    return data?.['riders']?.[0]?.['rider_id']        
-    }
+    return data?.['customers']?.[0]?.['customer_id']        
+  }
 
-
-export { insert_rider,find_rider }
+export {insert_customer,find_customer }  
