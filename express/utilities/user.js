@@ -30,4 +30,4 @@ const insert_password = async (variables) => {
   const data = await client.request(INSERT_USER_PASSWORD, variables)            
   return data?.['update_authentications_by_pk']?.['user_id']         
 }
-module.exports =  { User,insert_password }
+export { User,insert_password }

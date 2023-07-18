@@ -329,7 +329,11 @@
           - is_verified
           - email
           - first_name
+<<<<<<< HEAD
           - full_name
+=======
+          - last_name
+>>>>>>> refs/remotes/origin/main
           - phone_no
           - created_at
           - updated_at

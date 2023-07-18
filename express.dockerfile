@@ -17,7 +17,5 @@ RUN npm install
 RUN npm install -g nodemon
 
 COPY . .
-# COPY server.js ./
-# COPY express ./express/
 
 CMD ["nodemon", "--exec", "babel-node", "server.js"]
