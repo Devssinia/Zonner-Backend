@@ -3,19 +3,13 @@ import { config as dotenvConfig } from 'dotenv'
 import { insert_rider, find_rider } from '../utilities/rider'
 import { User,insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
-/**
- * Creates a new rider account with the provided information.
- *
- * @param {Object} req - The request object.
- * @param {Object} res - The response object.
- * @return {Promise} A promise that resolves to the response object.
- */
+
 const rider_signup = async (req, res) => {
   try {
     const { first_name, last_name, email, phone_no, password } = req.body.input
     if (!phone_no || !password || !first_name || !last_name || !email) {
       return res.status(400).json({
-        message: 'Please provide ALL the details',
+        message: 'Please provide all the details',
       })
     }
     const salt = await bcrypt.genSalt(10)

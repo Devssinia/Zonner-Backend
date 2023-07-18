@@ -5,12 +5,16 @@ import { rider_signup } from '../actions/rider_signup.js'
 import { vendor_signup } from '../actions/vendor_sign_up.js'
 import { file_upload } from '../actions/file_upload.js'
 import { login } from '../actions/login.js'
+import {testEvent} from '../actions/test_event'
 const router = express.Router()
 
 dotenvConfig()
 
 router.post('/login', (req, res) => {
   login(req, res)
+})
+router.post('/test', (req, res) => {
+  testEvent(req, res)
 })
 router.post('/customer_signup', (req, res) => {
   customer_signup(req, res)
