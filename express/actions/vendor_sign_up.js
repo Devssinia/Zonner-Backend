@@ -6,8 +6,8 @@ import { insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
 const vendor_signup = async (req, res) => {
   try {
-    const { first_name, last_name, email, phone_no, password } = req.body.input;
-    if (!phone_no || !password || !first_name || !last_name || !email) {
+    const { full_name, email, phone_no, password } = req.body.input;
+    if (!phone_no || !password || !full_name || !email) {
       return res.status(400).json({ message: 'Please provide ALL the details' });
     }
     const salt = await bcrypt.genSalt(10);
@@ -24,7 +24,7 @@ const vendor_signup = async (req, res) => {
       return res.status(400).json({ message: 'Your Email is Already Registered' });
     }
 
-    const vendor = await insert_vendor({ phone_no, first_name, last_name, email });
+    const vendor = await insert_vendor({ phone_no, full_name, email });
 
     if (!vendor) {
       return res.status(400).json({ message: 'Something went wrong' });

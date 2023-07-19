@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
 import { User as User } from '../utilities/user'
-import { insert_customer, find_customer } from '../utility/customer'
+import { insert_customer, find_customer } from '../utilities/customer'
 import { insert_password as Insert_password } from '../utilities/user'
 
 dotenvConfig()
@@ -22,7 +22,6 @@ const customer_signup = async (req, res) => {
     })
   }
   let customer_email = await find_customer({ email })
-  console.log(customer_email)
   if (customer_email) {
     return res.status(400).json({
       message: 'Your Email is Already Registered',
@@ -34,9 +33,10 @@ const customer_signup = async (req, res) => {
       message: 'Something went wrong ',
     })
   }
+
   const insert_password = await Insert_password({
     password: hashed_password,
-    user_id: rider,
+    user_id: customer,
   })
   if (!insert_password) {
     return res.status(400).json({
