@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
 import { User } from '../utilities/user'
-import { insert_vendor, find_vendor } from '../utilities/vendor'
+import { insert_vendor,find_vendor } from '../utilities/vendor'
 import { insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
 const vendor_signup = async (req, res) => {

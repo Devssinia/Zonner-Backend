@@ -13,6 +13,7 @@ import { User } from '../utilities/user'
  * @return {Object} The access token upon successful login.
  *   @property {string} access_token - The JWT access token.
  */
+
 const login = async (req, res) => {
   try {
     const { phone_no, password } = req.body.input
@@ -22,7 +23,7 @@ const login = async (req, res) => {
         .json({ message: 'Please provide Both Phone Number and Password' })
     }
 
-    const user = await User({ phone_no })
+    const user = await User({phone_no})
     console.log(user)
 
     if (!user || !user.password || !user.role) {
@@ -50,4 +51,4 @@ const login = async (req, res) => {
   }
 }
 
-export { login }
+export {login }

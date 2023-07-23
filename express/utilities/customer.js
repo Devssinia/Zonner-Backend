@@ -1,5 +1,5 @@
 import client from '../configuration/hasura_client'
-const INSERT_CUSTOMER = `
+const INSERT_CUSTOMER =`
 mutation MyMutation($email: String = "", $first_name: String = "", $last_name: String = "", $phone_no: String = "") {
     insert_customers_one(object: {email: $email, first_name: $first_name, last_name: $last_name, phone_no: $phone_no}) {
       customer_id
@@ -15,7 +15,7 @@ query MyQuery($email: String = "") {
   }
  `  
 const insert_customer = async (variables) => {
-  const data = await client.request(INSERT_CUSTOMER, variables)
+  const data = await client.request(INSERT_CUSTOMER,variables)
   return data['insert_customers_one']['customer_id']
 }
 

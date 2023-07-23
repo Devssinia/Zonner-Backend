@@ -1,11 +1,6 @@
 type Mutation {
   customer_signup(
-<<<<<<< HEAD
     full_name: String!
-=======
-    first_name: String!
-    last_name: String!
->>>>>>> refs/remotes/origin/main
     email: String!
     phone_no: String!
     password: String!
@@ -29,8 +24,7 @@ type Mutation {
 
 type Mutation {
   rider_signup(
-    first_name: String!
-    last_name: String!
+    full_name: String!
     email: String!
     phone_no: String!
     password: String!
@@ -39,8 +33,7 @@ type Mutation {
 
 type Mutation {
   vendor_signup(
-    first_name: String!
-    last_name: String!
+    full_name: String!
     email: String!
     phone_no: String!
     password: String!

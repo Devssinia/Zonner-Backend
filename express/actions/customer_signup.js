@@ -1,11 +1,9 @@
 import bcrypt from 'bcrypt'
 import { config as dotenvConfig } from 'dotenv'
-import { user as User } from '../utility/user'
-import { insert_customer, find_customer } from '../utility/customer'
-import { insert_password as Insert_password } from '../utility/user'
-
+import { User } from '../utilities/user'
+import { insert_customer, find_customer} from '../utilities/customer'
+import { insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
-
 const  customer_signup= async (req,res) => {
   const { full_name, email, phone_no, password } = req.body.input
   if (!phone_no || !password ||!full_name || !email) {

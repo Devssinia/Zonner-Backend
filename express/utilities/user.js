@@ -13,13 +13,12 @@ query MyQuery($phone_no: String = "") {
   }
 }
   `
-const INSERT_USER_PASSWORD = `
+const INSERT_USER_PASSWORD =`
 mutation MyMutation($password: String = "", $user_id: uuid = "") {
   update_authentications_by_pk(pk_columns: {user_id: $user_id}, _set: {password: $password}) {
     user_id
   }
 }
-
 `
 const User = async (variables) => {
   const data = await client.request(QUERY_USER_BY_PHONE, variables)
