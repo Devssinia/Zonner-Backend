@@ -1,10 +1,10 @@
 import client from '../configuration/hasura_client'
-const INSERT_CUSTOMER =`
-mutation MyMutation($email: String = "", $first_name: String = "", $last_name: String = "", $phone_no: String = "") {
-    insert_customers_one(object: {email: $email, first_name: $first_name, last_name: $last_name, phone_no: $phone_no}) {
-      customer_id
-    }
-  } 
+const INSERT_CUSTOMER = `
+mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: String = "") {
+  insert_customers_one(object: {email: $email, full_name: $full_name, phone_no: $phone_no}) {
+    customer_id
+  }
+}
   `
 
 const FIND_CUSTOMER = `
@@ -29,4 +29,4 @@ const find_customer = async (variables) => {
 }
 
 
-module.exports =  { insert_customer,find_customer }
+export { insert_customer,find_customer }

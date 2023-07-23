@@ -6,8 +6,8 @@ dotenvConfig()
 
 const rider_signup = async (req, res) => {
   try {
-    const { first_name, last_name, email, phone_no, password } = req.body.input
-    if (!phone_no || !password || !first_name || !last_name || !email) {
+    const { full_name, email, phone_no, password } = req.body.input
+    if (!phone_no || !password || !full_name || !email) {
       return res.status(400).json({
         message: 'Please provide all the details',
       })
@@ -28,7 +28,7 @@ const rider_signup = async (req, res) => {
         message: 'Your Email is Already Registered',
       })
     }
-    const rider = await insert_rider({ phone_no, first_name, last_name, email })
+    const rider = await insert_rider({ phone_no, full_name, email })
     if (!rider) {
       return res.status(400).json({
         message: 'Something went wrong ',

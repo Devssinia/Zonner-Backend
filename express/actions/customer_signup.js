@@ -6,7 +6,7 @@ import { insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
 const  customer_signup= async (req,res) => {
   const { full_name, email, phone_no, password } = req.body.input
-  if (!phone_no || !password ||!full_name || !email) {
+  if (!phone_no || !password || !full_name || !email) {
     return res.status(400).json({
       message: 'Please provide all the details',
     })
@@ -20,21 +20,21 @@ const  customer_signup= async (req,res) => {
     })
   }
   let customer_email = await find_customer({ email })
-  console.log(customer_email)
   if (customer_email) {
     return res.status(400).json({
       message: 'Your Email is Already Registered',
     })
   }
-  const customer = await insert_customer({phone_no,full_name, email })
+  const customer = await insert_customer({ phone_no, full_name, email })
   if (!customer) {
     return res.status(400).json({
       message: 'Something went wrong ',
     })
   }
+
   const insert_password = await Insert_password({
     password: hashed_password,
-    user_id: rider,
+    user_id: customer,
   })
   if (!insert_password) {
     return res.status(400).json({
@@ -45,4 +45,4 @@ const  customer_signup= async (req,res) => {
     success: 'Customer Created Successfully',
   })
 }
-export {customer_signup }
+export { customer_signup }

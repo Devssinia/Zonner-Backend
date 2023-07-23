@@ -1,7 +1,7 @@
 import client from '../configuration/hasura_client'
 const INSERT_RIDER = `
-mutation MyMutation($email: String = "", $first_name: String = "", $last_name: String = "", $phone_no: String = "") {
-    insert_riders_one(object: {email: $email, first_name: $first_name, last_name: $last_name, phone_no: $phone_no}) {
+mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: String = "") {
+    insert_riders_one(object: {email: $email, full_name: $full_name, phone_no: $phone_no}) {
       rider_id
     }
   } 
