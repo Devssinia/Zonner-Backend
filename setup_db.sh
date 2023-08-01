@@ -2,13 +2,24 @@
 
 # Load variables from .env file
 
+#!/bin/bash
+
+# Load variables from .env file
 source ~/Client\ Projects/Zonner-Backend/.env
-sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '$DB_ROOT_PASWORD';"
 
-sudo -u postgres psql -c "CREATE USER zonner_db_admin WITH PASSWORD '$DB_ZONNER_ADMIN_PASSWORD';"
+# Use a Here Document (<<) to pass the commands to psql with the correct environment variables
+sudo -u postgres psql << EOF
+-- Change the password for the postgres user
+ALTER USER postgres WITH PASSWORD '$DB_ROOT_PASWORD';
 
-sudo -u postgres psql -c "CREATE DATABASE zonner_db;"
+-- Create a new user zonner_db_admin with the specified password
+CREATE USER zonner_db_admin WITH PASSWORD '$DB_ZONNER_ADMIN_PASSWORD';
 
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE zonner_db TO zonner_db_admin;"
+-- Create a new database zonner_db
+CREATE DATABASE zonner_db;
+
+-- Grant all privileges on zonner_db to zonner_db_admin
+GRANT ALL PRIVILEGES ON DATABASE zonner_db TO zonner_db_admin;
+EOF
 
 exit
