@@ -27,6 +27,7 @@ sudo apt install postgresql postgresql-contrib
 
 
 # Configure UFW Firewall
+sudo ufw allow 'Nginx HTTP'
 sudo ufw enable
 sudo ufw allow 443
 sudo ufw allow 80
