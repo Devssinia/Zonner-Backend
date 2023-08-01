@@ -1,6 +1,4 @@
 #!/bin/bash
-source /.env
-source ~/Client\ Projects/Zonner-Backend/.env
 
 # Update package lists and install Nginx, Git, and Docker
 sudo apt update

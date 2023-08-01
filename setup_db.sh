@@ -1,11 +1,7 @@
 #!/bin/bash
 
 # Load variables from .env file
-
-#!/bin/bash
-
-# Load variables from .env file
-source ~/Client\ Projects/Zonner-Backend/.env
+source ~/Zonner-Backend/.env
 
 # Use a Here Document (<<) to pass the commands to psql with the correct environment variables
 sudo -u postgres psql << EOF
