@@ -1,0 +1,4 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- alter table "public"."customers" add column "profile_image" Text
+--  null default 'https://img.freepik.com/free-icon/user_318-563642.jpg';
