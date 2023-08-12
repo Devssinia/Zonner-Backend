@@ -6,7 +6,6 @@ mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: Str
   }
 }
 `
-
 const FIND_CUSTOMER = `
 query MyQuery($email: String = "") {
     customers(where: {email: {_eq: $email}}) {
