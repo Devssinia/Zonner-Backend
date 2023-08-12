@@ -18,7 +18,7 @@ const insert_customer = async (variables) => {
   return data['insert_customers_one']['customer_id']
 }
 
-z
+
 const find_customer = async (variables) => {
     const data = await client.request(FIND_CUSTOMER, variables);
     console.log("Data:", data);
