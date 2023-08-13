@@ -1,4 +1,5 @@
 #!/bin/bash
+ 
 
 # Generate SSH Key and Configure SSH
 # ssh-keygen -t rsa -b 4096 -f ~/.ssh/selihom_server_rsa -N ""

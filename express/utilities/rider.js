@@ -5,20 +5,21 @@ mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: Str
       rider_id
     }
   } 
-
   `
 
-const FIND_RIDER = `
+const FIND_RIDER =`
 query MyQuery($email: String = "") {
     riders(where: {email: {_eq: $email}}) {
       rider_id
     }
   }
  `  
+
 const insert_rider = async (variables) => {
   const data = await client.request(INSERT_RIDER, variables)
   return data['insert_riders_one']['rider_id']
 }
+
 
 const find_rider = async (variables) => {   
     const data = await client.request(FIND_RIDER, variables)  
