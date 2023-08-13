@@ -5,7 +5,7 @@ mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: Str
     customer_id
   }
 }
-  `
+`
 
 const FIND_CUSTOMER = `
 query MyQuery($email: String = "") {

@@ -23,7 +23,7 @@ const login = async (req, res) => {
         .json({ message: 'Please provide Both Phone Number and Password' })
     }
 
-    const user = await User({phone_no})
+    const user = await User({ phone_no })
     console.log(user)
 
     if (!user || !user.password || !user.role) {
@@ -51,4 +51,4 @@ const login = async (req, res) => {
   }
 }
 
-export {login }
+export { login }

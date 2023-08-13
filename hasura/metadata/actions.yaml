@@ -50,4 +50,5 @@ custom_types:
     - name: login_output
     - name: signup_output
     - name: file_upload_output
+    - name: MyMutationOutput
   scalars: []

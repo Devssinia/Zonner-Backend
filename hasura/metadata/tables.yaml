@@ -217,6 +217,9 @@
     name: order_items
     schema: public
   object_relationships:
+    - name: order
+      using:
+        foreign_key_constraint_on: order_id
     - name: product
       using:
         foreign_key_constraint_on: product_id
@@ -230,6 +233,14 @@
     - name: customer
       using:
         foreign_key_constraint_on: customer_id
+  array_relationships:
+    - name: order_items
+      using:
+        foreign_key_constraint_on:
+          column: order_id
+          table:
+            name: order_items
+            schema: public
 - table:
     name: product_categories
     schema: public
@@ -310,8 +321,23 @@
           - product_id
         filter: {}
 - table:
+    name: rider_documents
+    schema: public
+  object_relationships:
+    - name: rider
+      using:
+        foreign_key_constraint_on: rider_id
+- table:
     name: riders
     schema: public
+  object_relationships:
+    - name: rider_document
+      using:
+        foreign_key_constraint_on:
+          column: rider_id
+          table:
+            name: rider_documents
+            schema: public
   array_relationships:
     - name: rider_address
       using:
@@ -322,6 +348,21 @@
           remote_table:
             name: addresses
             schema: public
+  select_permissions:
+    - role: rider
+      permission:
+        columns:
+          - rider_id
+          - full_name
+          - email
+          - phone_no
+          - is_verified
+          - created_at
+          - updated_at
+          - rider_profile
+        filter:
+          rider_id:
+            _eq: X-Hasura-rider-id
 - table:
     name: roles
     schema: public
@@ -376,6 +417,18 @@
           table:
             name: businesses
             schema: public
+  select_permissions:
+    - role: anonymous
+      permission:
+        columns:
+          - created_at
+          - email
+          - full_name
+          - phone_no
+          - status
+          - updated_at
+          - vendor_id
+        filter: {}
 - table:
     name: wards
     schema: public
