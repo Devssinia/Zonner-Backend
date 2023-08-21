@@ -14,6 +14,7 @@ query MyQuery($phone_no: String = "") {
 }
   `
 
+
 const INSERT_USER_PASSWORD =`
 mutation MyMutation($password: String = "", $user_id: uuid = "") {
   update_authentications_by_pk(pk_columns: {user_id: $user_id}, _set: {password: $password}) {
@@ -51,4 +52,5 @@ const insert_password = async (variables) => {
   const data = await client.request(INSERT_USER_PASSWORD, variables)            
   return data?.['update_authentications_by_pk']?.['user_id']         
 }
+
 export { User,insert_password,update_last_seen}

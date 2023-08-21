@@ -1,5 +1,5 @@
-const testEvent=async (req,res)=>{
+const testEvent = async (req,res) => {
 res.json({
-"message":"test successful"
+"Message" : "Test Successful"
 })
 }

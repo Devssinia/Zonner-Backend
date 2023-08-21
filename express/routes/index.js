@@ -3,9 +3,11 @@ import { config as dotenvConfig } from 'dotenv'
 import { customer_signup } from '../actions/customer_signup.js'
 import { rider_signup } from '../actions/rider_signup.js'
 import { vendor_signup } from '../actions/vendor_sign_up.js'
-import { file_upload } from '../actions/file_upload.js'
-import { login } from '../actions/login.js'
-import {testEvent} from '../actions/test_event'
+import { file_upload } from   '../actions/file_upload.js'
+import { login } from   '../actions/login.js'
+import { testEvent } from '../actions/test_event'
+import {c2b_payment} from '../actions/payment.js'
+import {getOAuthToken} from '../actions/payments/generateToken.js'
 const router = express.Router()
 
 dotenvConfig()
@@ -28,4 +30,9 @@ router.post('/vendor_signup', (req, res) => {
 router.post('/file_upload', (req, res) => {
   file_upload(req, res)
 })
+
+router.get('/pay', getOAuthToken,(req,res)=>{
+  c2b_payment(req,res)
+})
+
 export default router
