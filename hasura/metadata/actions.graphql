@@ -52,3 +52,7 @@ type file_upload_output {
   image_url: String!
 }
 
+type MyMutationOutput {
+  user_id: uuid!
+}
+

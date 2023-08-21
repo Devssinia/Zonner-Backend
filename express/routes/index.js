@@ -28,5 +28,4 @@ router.post('/vendor_signup', (req, res) => {
 router.post('/file_upload', (req, res) => {
   file_upload(req, res)
 })
-
 export default router
