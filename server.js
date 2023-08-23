@@ -12,6 +12,6 @@ app.use(cors())
 app.use('/', routes) 
 
 const port = process.env.EXPRESS_PORT;
-app.listen( port, () => {
+app.listen( port||3000, () => {
   console.log('on the moddddon')
 })

@@ -1,25 +1,42 @@
 import cloudinary from '../configuration/cloudinary.js';
-import fs from 'fs/promises'; // Use fs.promises for Promise-based file operations
+import { createReadStream } from 'fs'; // Import createReadStream directly from 'fs' module
 
 const file_upload = async (req, res) => {
-  const imagePath = req.body.name;
+  const filePath = req.body.path;
+  console.log(`the path of the file is ${filePath}`);
+
   try {
-    // Read the image file asynchronously
-    const data = await fs.readFile(imagePath);
+    // Read the file asynchronously using streams
+    const readStream = createReadStream(filePath); // Use createReadStream directly
 
-    // Convert the image data to base64
-    const base64str = data.toString('base64');
+    // Upload the file to Cloudinary
+    const uploadOptions = {
+      resource_type: 'auto',
+      public_id: 'zonner-files',
+    };
 
-    // Upload the image to Cloudinary
-    const result = await cloudinary.uploader.upload(`data:image/jpeg;base64,${base64str}`);
+    const uploadResult = await cloudinary.uploader.upload_stream(
+      uploadOptions,
+      (error, result) => {
+        if (error) {
+          console.error(error);
+          return res.status(400).json({
+            message: error.message || 'An error occurred during upload',
+          });
+        }
 
-    return res.json({
-      image_url: result.url
-    });
+        return res.json({
+          file_url: result.url,
+        });
+      }
+    );
+
+    // Pipe the file data to the Cloudinary uploader
+    readStream.pipe(uploadResult);
   } catch (e) {
     console.error(e);
     return res.status(400).json({
-      message: e.message || 'An error occurred'
+      message: e.message || 'An error occurred',
     });
   }
 };
