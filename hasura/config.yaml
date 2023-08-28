@@ -1,5 +1,5 @@
 version: 2
-endpoint: http://78.47.206.89
+endpoint: http://78.47.206.89:2001
 metadata_directory: metadata
 actions:
   kind: synchronous
