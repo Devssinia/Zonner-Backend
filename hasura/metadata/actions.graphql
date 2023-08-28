@@ -9,9 +9,8 @@ type Mutation {
 
 type Mutation {
   file_upload(
-    base64str: String!
-    name: String!
-    type: String!
+    file_type: String!
+    base64Str: String!
   ): file_upload_output!
 }
 
@@ -49,7 +48,7 @@ type signup_output {
 }
 
 type file_upload_output {
-  image_url: String!
+  file_url: String!
 }
 
 type MyMutationOutput {
