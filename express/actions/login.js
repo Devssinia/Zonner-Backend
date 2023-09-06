@@ -47,8 +47,7 @@ const token = jwt.sign(token_payload, process.env.HASURA_GRAPHQL_JWT_SECRET,{
 expiresIn: expirationInSeconds
 }); 
 const last_seen=await update_last_seen({phone_no})
-
- console.log(`the returned time stamp is ${last_seen}`)
+console.log(`the returned time stamp is ${last_seen}`)
 return res.status(200).json({ access_token: token })
   } catch (error) {
     console.log(error)

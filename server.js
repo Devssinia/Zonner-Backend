@@ -12,6 +12,6 @@ app.use(cors())
 app.use('/', routes) 
 
 const port = process.env.EXPRESS_PORT;
-app.listen( port||3000, () => {
-  console.log('on the moddddon')
+app.listen( port||2001, () => {
+  console.log('server started successfully')
 })
