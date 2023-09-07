@@ -6,7 +6,8 @@ import { vendor_signup } from '../actions/vendor_sign_up.js'
 import { file_upload } from   '../actions/file_upload.js'
 import { login } from   '../actions/login.js'
 import { testEvent } from '../actions/test_event'
-import {stk_push} from '../actions/payments/c_to_b_payment.js'
+import {getOAuthToken} from '../actions/payments/generateToken.js'
+import * as transaction from '../actions/payments/c_to_b_payment'
 const router = express.Router();
 dotenvConfig()
 router.post('/login', (req, res) => {
@@ -27,8 +28,6 @@ router.post('/vendor_signup', (req, res) => {
 router.post('/file_upload', (req, res) => {
   file_upload(req, res)
 })
-router.get('/pay',(req,res)=>{
-stk_push(req,res)
-})
+router.post("/stk",getOAuthToken,transaction.payAmount)
 
 export default router

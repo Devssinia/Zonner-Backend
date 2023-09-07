@@ -13,5 +13,5 @@ app.use('/', routes)
 
 const port = process.env.EXPRESS_PORT;
 app.listen( port||2001, () => {
-  console.log('server started successfully')
+  console.log(`server started successfully ${port}`)
 })

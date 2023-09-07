@@ -1,92 +1,62 @@
 const axios = require('axios');
 const config = require('./config');
-
-const url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
-const consumer_key = config.consumerKey;
-const consumer_secret = config.secret;
-const passkey = config.passkey;
-const shortcode = config.shortcode;
-const prettyJsonOptions = {
-    noColor: true
-};
-
-let oauth_token=null;
-
-async function getOauthToken() {
+exports.payAmount=async(req,res)=>{
+    const phone=req.body.phone
+    const money=req.body.amount
+    if(!phone) return res.status(400).json({message:"Phone Number is required"})
+    if(!money) return res.status(400).json({message:"Amount is required"})
+    const date=new Date()
+    const timestamp=
+         date.getFullYear() +
+         ("0" + (date.getMonth() + 1)).slice(-2) +
+         ("0" + date.getDate()).slice(-2) +
+         ("0" + date.getHours()).slice(-2) +
+         ("0" + date.getMinutes()).slice(-2) +
+         ("0" + date.getSeconds()).slice(-2) 
+    let token = req.token;
+console.log("token",req.token)
+    let auth = `Bearer ${token}`;
+    console.log(auth)
+    let url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
+    let bs_short_code = config.shortcode;
+    let passkey = config.passkey;
+    let officialPhoneNo=phone.substring(1)
+    let password = new Buffer.from(`${bs_short_code}${passkey}${timestamp}`).toString('base64');
+    let transcation_type = "CustomerPayBillOnline";
+    let amount = `${money}`; //you can enter any amount
+    let partyA = `${officialPhoneNo}`; //should follow the format:2547xxxxxxxx
+    let partyB = bs_short_code;
+    let phoneNumber = `${officialPhoneNo}`; //should follow the format:2547xxxxxxxx
+    let callBackUrl = "https://d715-196-188-35-159.ngrok-free.app/mpesa-callback";
+    let accountReference = `Fred's Zonner`;
+    let transaction_desc = "Testing"
     try {
-        const auth = "Basic " + Buffer.from(`${consumer_key}:${consumer_secret}`).toString("base64");
-        const response = await axios.get(url, {
-            headers: {
-                "Authorization": auth
-            }
-        });
-        oauth_token = response.data.access_token;
-        console.log("Token:", oauth_token);
-    } catch (error) {
-        console.error("Auth Error:", error.message);
-    }
-}
-
-async function stk_push(req, res) {
-    try {
-        if (!oauth_token) {
-            await getOauthToken();
-        }
-
-        const phone = req.body.phone;
-        const amount = req.body.amount;
-
-        if (!phone || !amount) {
-            return res.status(400).json({ message: "Phone Number and Amount are required" });
-        }
-
-        const timestamp = formatDate();
-        const password = Buffer.from(shortcode + passkey + timestamp).toString("base64");
-        const auth = "Bearer " + oauth_token;
-        console.log(auth)
-        console.log(`excute ${consumer_key}`)
-        const pay_url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
-        const response = await axios.post(pay_url, {
-            "BusinessShortCode": shortcode,
-            "Password": password,
-            "Timestamp": timestamp,
-            "TransactionType":"CustomerPayBillOnline",
+ console.log("it is excuted succssfully")
+    console.log(`the phone number passed is ${officialPhoneNo}`)
+        let {data} = await axios.post(url,{
+            "BusinessShortCode":bs_short_code,
+            "Password":password,
+            "Timestamp":timestamp,
+            "TransactionType": transcation_type,
             "Amount": amount,
-            "PartyA": phone,
-            "PartyB": shortcode,
-            "PhoneNumber": phone,
-            "CallBackURL":"https://9ee9-196-191-61-185.ngrok-free.app/mpesa-callback",
-            "AccountReference": "Zonner App",
-            "TransactionDesc": "Testing mpesa"
-        }, {
-            headers: {
-                "Authorization": auth
+            "PartyA": partyA,
+            "PartyB": partyB,
+            "PhoneNumber":phoneNumber,
+            "CallBackURL":callBackUrl,
+            "AccountReference":accountReference,
+            "TransactionDesc":transaction_desc
+        },{
+            "headers":{
+                "Authorization":auth
             }
+        })
+        console.log(data)
+     return  res.status(200).json(data)
+    }catch(err){
+        console.log(err);
+        return res.send({
+            success:false,
+            message:err.message
         });
-        res.status(200).send('STK push sent to phone');
-        console.log("Response:", response.data);
-    } catch (error) {
-        res.status(500).send('There was an error');
-        console.error("LNMO error:", error);
     }
 }
-
-function formatDate() {
-    const date = new Date();
-    const correctDate =
-        date.getFullYear().toString() +
-        pad2(date.getMonth() + 1) +
-        pad2(date.getDate()) +
-        pad2(date.getHours()) +
-        pad2(date.getMinutes()) +
-        pad2(date.getSeconds());
-    return correctDate;
-}
-
-function pad2(n) {
-    return n < 10 ? '0' + n : n;
-}
-
-module.exports = {
-    stk_push
-};

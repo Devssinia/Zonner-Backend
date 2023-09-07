@@ -1,38 +1,32 @@
-// import axios from 'axios'
+const axios=require('axios')
+ const config = require('./config');
+const getOAuthToken=async(req,res,next)=>{
+const url="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+const consumer_key = config.consumerKey;
+const consumer_secret = config.secret;
+    let auth = new Buffer.from(`${consumer_key}:${consumer_secret}`).toString('base64');
+    try{
 
-// import dotenv from 'dotenv'
-// dotenv.config()
-// const getOAuthToken = async (req, res, next) => {
-//   let consumer_key = process.env.CONSUMER_KEY
-//   let consumer_secret = process.env.CONSUMER_SECRET
-//   let url = process.env.OAUTH_TOKEN_URL
-//   // console.log({
-//   //   consumer_key:consumer_key,
-//   //   consumer_secret:consumer_secret,
-//   //   url:url
-//   // })
-//   let auth = new Buffer.from(`${consumer_key}:${consumer_secret}`).toString(
-//     'base64',
-//   )
-//   console.log("Authed",auth)
-//   try {
-//     let { data } = await axios.get(url, {
-//       headers: {
-//         Authorization: `Basic ${auth}`,
-//       },
-//     })
+        let {data} =  await axios.get(url,{
+            headers:{
+                "Authorization":`Basic ${auth}`
+            }
+        });
 
-//   req.token = data['access_token']
-//     console.log(data)
+         req.token = data['access_token'];
 
-//     return next()
-//   } catch (err) {
-//     console.log(err.message)
-//     return res.send({
-//       success: false,
-//       message: err.message,
-//     })
-//   }
-// }
+        return next();
 
-// export { getOAuthToken }
+    }catch(err){
+       console
+        return res.send({
+            success:false,
+            message:err.message
+        });
+
+    }
+    
+};
+module.exports={
+    getOAuthToken
+}
