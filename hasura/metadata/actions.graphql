@@ -1,4 +1,11 @@
 type Mutation {
+  customer_pay(
+    phone: String!
+    amount: String!
+  ): pay_output!
+}
+
+type Mutation {
   customer_signup(
     full_name: String!
     email: String!
@@ -53,5 +60,9 @@ type file_upload_output {
 
 type MyMutationOutput {
   user_id: uuid!
+}
+
+type pay_output {
+  message: String!
 }
 

@@ -6,10 +6,9 @@ const consumer_key = config.consumerKey;
 const consumer_secret = config.secret;
     let auth = new Buffer.from(`${consumer_key}:${consumer_secret}`).toString('base64');
     try{
-
         let {data} =  await axios.get(url,{
             headers:{
-                "Authorization":`Basic ${auth}`
+               "Authorization":`Basic ${auth}`
             }
         });
 
@@ -18,14 +17,11 @@ const consumer_secret = config.secret;
         return next();
 
     }catch(err){
-       console
         return res.send({
             success:false,
             message:err.message
         });
-
-    }
-    
+    } 
 };
 module.exports={
     getOAuthToken

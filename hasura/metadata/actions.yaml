@@ -1,4 +1,8 @@
 actions:
+  - name: customer_pay
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/stk'
   - name: customer_signup
     definition:
       kind: synchronous
@@ -51,4 +55,5 @@ custom_types:
     - name: signup_output
     - name: file_upload_output
     - name: MyMutationOutput
+    - name: pay_output
   scalars: []

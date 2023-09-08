@@ -14,7 +14,7 @@ exports.payAmount=async(req,res)=>{
          ("0" + date.getMinutes()).slice(-2) +
          ("0" + date.getSeconds()).slice(-2) 
     let token = req.token;
-console.log("token",req.token)
+    console.log("token",req.token)
     let auth = `Bearer ${token}`;
     console.log(auth)
     let url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
@@ -23,12 +23,12 @@ console.log("token",req.token)
     let officialPhoneNo=phone.substring(1)
     let password = new Buffer.from(`${bs_short_code}${passkey}${timestamp}`).toString('base64');
     let transcation_type = "CustomerPayBillOnline";
-    let amount = `${money}`; //you can enter any amount
-    let partyA = `${officialPhoneNo}`; //should follow the format:2547xxxxxxxx
+    let amount = `${money}`; 
+    let partyA = `${officialPhoneNo}`; 
     let partyB = bs_short_code;
-    let phoneNumber = `${officialPhoneNo}`; //should follow the format:2547xxxxxxxx
-    let callBackUrl = "https://d715-196-188-35-159.ngrok-free.app/mpesa-callback";
-    let accountReference = `Fred's Zonner`;
+    let phoneNumber = `${officialPhoneNo}`;
+    let callBackUrl = "https://124d-196-190-62-160.ngrok-free.app/mpesa-callback";
+    let accountReference = `FredZonner`;
     let transaction_desc = "Testing"
     try {
  console.log("it is excuted succssfully")
@@ -50,8 +50,9 @@ console.log("token",req.token)
                 "Authorization":auth
             }
         })
-        console.log(data)
-     return  res.status(200).json(data)
+     console.log(data)
+     return  res.status(200).json({
+       "message":"successfully sent"})
     }catch(err){
         console.log(err);
         return res.send({

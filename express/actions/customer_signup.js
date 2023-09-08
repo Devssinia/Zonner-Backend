@@ -4,7 +4,7 @@ import { User } from '../utilities/user'
 import {insert_customer,find_customer} from  '../utilities/customer'
 import { insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
-const  customer_signup= async (req,res) => {
+const  customer_signup = async (req,res)=> {
   const { full_name, email, phone_no, password } = req.body.input
   if (!phone_no || !password || !full_name || !email) {
     return res.status(400).json({
@@ -31,7 +31,6 @@ const  customer_signup= async (req,res) => {
       message: 'Something went wrong ',
     })
   }
-
   const insert_password = await Insert_password({
     password: hashed_password,
     user_id: customer,
