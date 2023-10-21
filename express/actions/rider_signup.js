@@ -3,7 +3,6 @@ import { config as dotenvConfig } from 'dotenv'
 import { insert_rider, find_rider } from '../utilities/rider'
 import { User,insert_password as Insert_password } from '../utilities/user'
 dotenvConfig()
-
 const rider_signup = async (req, res) => {
   try {
     const { full_name, email, phone_no, password } = req.body.input
@@ -53,4 +52,4 @@ const rider_signup = async (req, res) => {
   }
 }
 
-export { rider_signup }
+export {rider_signup }

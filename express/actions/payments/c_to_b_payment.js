@@ -27,11 +27,11 @@ exports.payAmount=async(req,res)=>{
     let partyA = `${officialPhoneNo}`; 
     let partyB = bs_short_code;
     let phoneNumber = `${officialPhoneNo}`;
-    let callBackUrl = "https://124d-196-190-62-160.ngrok-free.app/mpesa-callback";
+    let callBackUrl = "https://a5b2-196-191-61-103.ngrok-free.app/callback";
     let accountReference = `FredZonner`;
     let transaction_desc = "Testing"
     try {
- console.log("it is excuted succssfully")
+    console.log("it is excuted succssfully")
     console.log(`the phone number passed is ${officialPhoneNo}`)
         let {data} = await axios.post(url,{
             "BusinessShortCode":bs_short_code,
@@ -58,6 +58,51 @@ exports.payAmount=async(req,res)=>{
         return res.send({
             success:false,
             message:err.message
+        });
+    }
+}
+exports.mpessaCallBack=async(req,res)=>{
+    let body=req.body
+    let {ResultCode,ResultDesc}=body.Body.stkCallback;
+    let receipt,amount,phone,date=""    
+    if(ResultCode != 0){
+        console.log(ResultCode,ResultDesc) 
+        return res.status(400).json({message:`${ResultDesc}`})
+    } 
+    let list=body.Body.stkCallback.CallbackMetadata.Item;
+    list.forEach(item => {
+
+        if (item.Name === "MpesaReceiptNumber") {
+        //    unique identifier for transaction
+        receipt = item.Value
+         console.log(`the recipt is ${receipt}`)
+        }
+        if (item.Name === "TransactionDate") {
+           //stores date of transaction
+          date = item.Value
+        console.log(`the date here is ${date}`)
+        }
+        if (item.Name === "PhoneNumber") {
+            //stores the transaction phone
+           phone= item.Value
+           console.log(`the phone is ${phone}`)
+
+        }
+        if (item.Name === "Amount") {
+           //stores transaction amount
+            amount = item.Value
+            console.log(`the amount is ${amount}`)
+        }
+    });
+    try {
+
+    console.log(ResultDesc)
+      return  res.status(201).json({message:`${ResultDesc}`})
+    } catch (error) {
+        console.log(error.message)
+        return res.send({
+            success:false,
+            message:error.message
         });
     }
 }

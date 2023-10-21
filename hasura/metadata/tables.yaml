@@ -65,6 +65,19 @@
             name: addresses
             schema: public
 - table:
+    name: business_address
+    schema: public
+  object_relationships:
+    - name: business
+      using:
+        foreign_key_constraint_on: business_id
+    - name: county
+      using:
+        foreign_key_constraint_on: county_id
+    - name: ward
+      using:
+        foreign_key_constraint_on: ward_id
+- table:
     name: business_categories
     schema: public
   array_relationships:
@@ -106,6 +119,13 @@
       using:
         foreign_key_constraint_on: vendor_id
   array_relationships:
+    - name: buisness_addresses
+      using:
+        foreign_key_constraint_on:
+          column: business_id
+          table:
+            name: business_address
+            schema: public
     - name: business_reviews
       using:
         foreign_key_constraint_on:
@@ -180,6 +200,13 @@
     name: counties
     schema: public
   array_relationships:
+    - name: buisness_addresses
+      using:
+        foreign_key_constraint_on:
+          column: county_id
+          table:
+            name: business_address
+            schema: public
     - name: wards
       using:
         foreign_key_constraint_on:
@@ -541,6 +568,14 @@
     - name: county
       using:
         foreign_key_constraint_on: county_id
+  array_relationships:
+    - name: buisness_addresses
+      using:
+        foreign_key_constraint_on:
+          column: ward_id
+          table:
+            name: business_address
+            schema: public
 - table:
     name: wish_lists
     schema: public
