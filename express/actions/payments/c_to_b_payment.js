@@ -56,7 +56,9 @@ exports.payAmount=async(req,res)=>{
      console.log(data)
      const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:Date(timestamp) ,mpesa_transaction_id:data["CheckoutRequestID"], status:"unpaid",order_id:order_id})
      return  res.status(200).json({
-       "mpessa_transaction_id":data["CheckoutRequestID"],"transaction_id":transaction})
+       "mpessa_transaction_id":data["CheckoutRequestID"],
+       "transaction_id":transaction
+                            })
     }catch(err){
         console.log(err);
         return res.send({
