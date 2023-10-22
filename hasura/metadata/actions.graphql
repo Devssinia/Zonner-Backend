@@ -2,6 +2,7 @@ type Mutation {
   customer_pay(
     phone: String!
     amount: String!
+    order_id: uuid!
   ): pay_output!
 }
 

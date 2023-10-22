@@ -15,3 +15,6 @@ const port = process.env.EXPRESS_PORT;
 app.listen( port||2001, () => {
   console.log(`server started successfully ${port}`)
 })
+// +254717107583 shirice
+//+254708374149 mpesa test
+//+25470568

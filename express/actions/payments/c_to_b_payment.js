@@ -1,8 +1,11 @@
 const axios = require('axios');
 const config = require('./config');
+import { insert_transaction,update_transaction } from '../../utilities/transactions';
+
 exports.payAmount=async(req,res)=>{
     const phone=req.body.phone
     const money=req.body.amount
+    const order_id=req.body.order_id;
     if(!phone) return res.status(400).json({message:"Phone Number is required"})
     if(!money) return res.status(400).json({message:"Amount is required"})
     const date=new Date()
@@ -20,14 +23,14 @@ exports.payAmount=async(req,res)=>{
     let url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
     let bs_short_code = config.shortcode;
     let passkey = config.passkey;
-    let officialPhoneNo=phone.substring(1)
+    let officialPhoneNo=phone.substring(1)//left the first digit +
     let password = new Buffer.from(`${bs_short_code}${passkey}${timestamp}`).toString('base64');
     let transcation_type = "CustomerPayBillOnline";
     let amount = `${money}`; 
     let partyA = `${officialPhoneNo}`; 
     let partyB = bs_short_code;
     let phoneNumber = `${officialPhoneNo}`;
-    let callBackUrl = "https://a5b2-196-191-61-103.ngrok-free.app/callback";
+    let callBackUrl = "https://d1b6-196-191-60-168.ngrok-free.app/callback";
     let accountReference = `FredZonner`;
     let transaction_desc = "Testing"
     try {
@@ -51,17 +54,19 @@ exports.payAmount=async(req,res)=>{
             }
         })
      console.log(data)
+     const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:Date(timestamp) ,mpesa_transaction_id:data["CheckoutRequestID"], status:"unpaid",order_id:order_id})
      return  res.status(200).json({
        "message":"successfully sent"})
     }catch(err){
         console.log(err);
         return res.send({
             success:false,
-            message:err.message
+            message:err
         });
     }
 }
 exports.mpessaCallBack=async(req,res)=>{
+      console.alert("let us procede")
     let body=req.body
     let {ResultCode,ResultDesc}=body.Body.stkCallback;
     let receipt,amount,phone,date=""    
@@ -75,6 +80,7 @@ exports.mpessaCallBack=async(req,res)=>{
         if (item.Name === "MpesaReceiptNumber") {
         //    unique identifier for transaction
         receipt = item.Value
+         res.status(200).json({"message":"successful payment"})
          console.log(`the recipt is ${receipt}`)
         }
         if (item.Name === "TransactionDate") {

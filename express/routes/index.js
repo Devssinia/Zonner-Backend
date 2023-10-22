@@ -11,24 +11,12 @@ import * as transaction from '../actions/payments/c_to_b_payment'
 import { buisnessToCustomer } from '../actions/payments/b_to_c_payment.js'
 const router = express.Router();
 dotenvConfig()
-router.post('/login', (req, res) => {
-  login(req, res)
-})
-router.post('/test', (req, res) => {
-  testEvent(req, res)
-})
-router.post('/customer_signup', (req, res) => {
-  customer_signup(req, res)
-})
-router.post('/rider_signup', (req, res) => {
-  rider_signup(req, res)
-})
-router.post('/vendor_signup', (req, res) => {
-  vendor_signup(req, res)
-})
-router.post('/file_upload', (req, res) => {
-  file_upload(req, res)
-})
+router.post('/login', (req, res) => {login(req, res)})
+router.post('/test', (req, res) => {testEvent(req, res)})
+router.post('/customer_signup', (req, res) => {customer_signup(req, res)})
+router.post('/rider_signup', (req, res) => { rider_signup(req, res)})
+router.post('/vendor_signup', (req, res) => {vendor_signup(req, res)})
+router.post('/file_upload', (req, res) => {file_upload(req, res)})
 router.post("/stk",getOAuthToken,transaction.payAmount)
 router.post("/callback",getOAuthToken,transaction.mpessaCallBack)
 router.post("btoc",getOAuthToken,buisnessToCustomer)
@@ -38,7 +26,7 @@ router.post('/timeout_url', (req, res) => {
 })
 
 router.post('/b2c_result_url', (req, res) => {
-    console.log("-------------------- B2C Result -----------------")
+    consosle.log("-------------------- B2C Result -----------------")
     console.log(JSON.stringify(req.body.Result))
 })
 export default router

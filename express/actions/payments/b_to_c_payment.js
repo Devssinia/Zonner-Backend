@@ -1,5 +1,6 @@
 const axios = require('axios');
 const config = require('./config');
+import { insert_transaction,update_transaction } from '../../utilities/transactions';
 exports.buisnessToCustomer=async(req,res)=>{  
     const url = 'https://sandbox.safaricom.co.ke/mpesa/b2c/v3/paymentrequest';
     const phone=req.body.phone;
