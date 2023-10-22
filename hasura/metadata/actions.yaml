@@ -3,6 +3,18 @@ actions:
     definition:
       kind: synchronous
       handler: '{{ACTION_BASE_URL}}/stk'
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+
+              "phone": {{$body.input.phone}},
+                "amount": {{$body.input.amount}},
+                "order_id": {{$body.input.order_id}}
+            }
+        template_engine: Kriti
+        version: 2
   - name: customer_signup
     definition:
       kind: synchronous

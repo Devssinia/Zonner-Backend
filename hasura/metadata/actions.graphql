@@ -64,7 +64,7 @@ type MyMutationOutput {
 }
 
 type pay_output {
-  mpessa_transaction_id: String!
+  mpessa_transaction_id: String
   transaction_id: String
 }
 
