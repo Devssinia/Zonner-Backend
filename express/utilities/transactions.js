@@ -26,6 +26,7 @@ mutation UpdateTransaction ($transaction_id:uuid!,$status:transaction_status!) {
  `  
 const insert_transaction = async (variables) => {
   const data = await client.request(INSERT_TRANSACTION,variables)
+  console.log("inserted transaction is",data['insert_transactions_one']['transaction_id'])
   return data['insert_transactions_one']['transaction_id']
 }
 const update_transaction = async (variables) => {

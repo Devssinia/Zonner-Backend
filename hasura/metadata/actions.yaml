@@ -1,7 +1,7 @@
 actions:
   - name: customer_pay
     definition:
-      kind: synchronous
+      kind: asynchronous
       handler: '{{ACTION_BASE_URL}}/stk'
   - name: customer_signup
     definition:
