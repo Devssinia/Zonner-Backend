@@ -28,7 +28,7 @@ exports.buisnessToCustomer=async(req,res)=>{
         })
      console.log(data)
      return  res.status(200).json({
-       "message":"successfully sent"})
+       "transaction_id":"successfully sent",})
     }catch(err){
         console.log(err);
         return res.send({
