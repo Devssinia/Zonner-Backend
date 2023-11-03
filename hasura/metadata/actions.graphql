@@ -76,6 +76,6 @@ type pay_output {
 }
 
 type SampleOutput {
-  success: String!
+  message: String!
 }
 
