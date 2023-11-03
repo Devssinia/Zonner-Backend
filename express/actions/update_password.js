@@ -19,7 +19,7 @@ const reset_password = async (req, res) => {
     const authentication = await update_password({phone_no,password })
     console.log(authentication)
     return res.json({
-      success: 'Password Updated Successfully',
+      success: 'Password Reseted Successfully',
     })
   } catch (error) {
     return res.status(400).json({

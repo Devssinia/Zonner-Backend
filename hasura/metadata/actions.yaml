@@ -39,6 +39,14 @@ actions:
       - role: customer
       - role: rider
       - role: anonymous
+  - name: reset_password
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/reset_password'
+      request_transform:
+        query_params: {}
+        template_engine: Kriti
+        version: 2
   - name: rider_signup
     definition:
       kind: synchronous
@@ -68,4 +76,5 @@ custom_types:
     - name: file_upload_output
     - name: MyMutationOutput
     - name: pay_output
+    - name: SampleOutput
   scalars: []

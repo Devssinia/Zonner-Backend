@@ -30,6 +30,13 @@ type Mutation {
 }
 
 type Mutation {
+  reset_password(
+    phone_no: String!
+    new_password: String!
+  ): SampleOutput!
+}
+
+type Mutation {
   rider_signup(
     full_name: String!
     email: String!
@@ -66,5 +73,9 @@ type MyMutationOutput {
 type pay_output {
   mpessa_transaction_id: String
   transaction_id: String
+}
+
+type SampleOutput {
+  success: String!
 }
 
