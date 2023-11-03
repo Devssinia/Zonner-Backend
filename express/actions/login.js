@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { User, update_last_seen } from '../utilities/user'
-
 /**
  * Log in the user with the provided phone number and password.
  *
