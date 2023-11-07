@@ -14,7 +14,7 @@ const port = process.env.EXPRESS_PORT;
 app.listen( port||3000, () => {
   console.log(`server started successfully ${port}`)
 })
-
+// AWS Aurora Serverless cluster.
 // +254717107583 shirice
 //+254708374149 mpesa test
 //+25470568
