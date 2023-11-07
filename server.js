@@ -11,7 +11,7 @@ app.use(express.json({ limit: '200mb' }))
 app.use(cors())
 app.use('/', routes) 
 const port = process.env.EXPRESS_PORT;
-app.listen( port||3000, () => {
+app.listen( port||2001, () => {
   console.log(`server started successfully ${port}`)
 })
 // AWS Aurora Serverless cluster.
