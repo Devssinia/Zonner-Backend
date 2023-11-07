@@ -1,0 +1,3 @@
+table:
+  name: vendors
+  schema: public

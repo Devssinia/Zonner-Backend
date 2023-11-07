@@ -1,0 +1,8 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- alter table "public"."buisness_address" rename to "business_address";
+-- alter table "public"."business_address" alter column "ward_id" drop not null;
+-- alter table "public"."business_address" alter column "county_id" drop not null;
+-- alter table "public"."business_address" alter column "city" drop not null;
+-- alter table "public"."business_address" alter column "longtude" drop not null;
+-- alter table "public"."business_address" alter column "latitude" drop not null;

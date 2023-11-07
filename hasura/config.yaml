@@ -3,4 +3,4 @@ endpoint: http://78.47.206.89:2000
 metadata_directory: metadata
 actions:
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
+  handler_webhook_baseurl: http://localhost:2001

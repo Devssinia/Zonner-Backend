@@ -1,6 +1,37 @@
-actions: []
+actions:
+  - name: customer_pay
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/stk'
+  - name: customer_signup
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/customer_signup'
+  - name: file_upload
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/file_upload'
+  - name: login
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/login'
+  - name: rider_signup
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/rider_signup'
+  - name: vendor_signup
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/vendor_signup'
 custom_types:
-    enums: []
-    input_objects: []
-    objects: []
-    scalars: []
+  enums: []
+  input_objects:
+    - name: SampleInput
+  objects:
+    - name: login_output
+    - name: signup_output
+    - name: file_upload_output
+    - name: MyMutationOutput
+    - name: pay_output
+    - name: SampleOutput
+  scalars: []

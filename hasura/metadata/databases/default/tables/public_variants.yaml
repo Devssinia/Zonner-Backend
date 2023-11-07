@@ -1,0 +1,3 @@
+table:
+  name: variants
+  schema: public

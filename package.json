@@ -25,7 +25,7 @@
         "migrate:status:prod": "npm run hasura:prod migrate status",
         "seed": "npm run hasura seeds apply",
         "rebuild": "sudo docker-compose build zonner_express_app && npm run dev",
-        "handle": "cd hasura && hasura metadata export --admin-secret 'secret' && hasura migrate create 'forced_migration' --from-server --admin-secret 'secret'"
+        "handle": "cd hasura && hasura metadata export --admin-secret 'OlfYeenaXko46zqI89K7N1rK43' && hasura migrate create 'forced_migration' --from-server --admin-secret 'OlfYeenaXko46zqI89K7N1rK43'"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.10",

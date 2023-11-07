@@ -1,0 +1,3 @@
+table:
+  name: business_reviews
+  schema: public

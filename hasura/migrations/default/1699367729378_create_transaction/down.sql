@@ -1,0 +1,25 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE TABLE "public"."transactions" ("transaction_id" uuid NOT NULL, "phone_number" text NOT NULL, "status" text NOT NULL, "amount" text NOT NULL, "transaction_date" text NOT NULL, "mpesa_transaction_id" text NOT NULL, PRIMARY KEY ("transaction_id") );
+-- CREATE TYPE transaction_status AS ENUM ('paid','unpaid','failed','cancelled','delivered');
+-- -- alter table "public"."transactions" drop column "status" cascade;
+-- -- alter table "public"."transactions" add column "status" transaction_status
+-- --  null;
+-- -- alter table "public"."transactions" alter column "transaction_id" set default gen_random_uuid();
+-- -- alter table "public"."transactions" alter column "amount" drop not null;
+-- -- alter table "public"."transactions" alter column "transaction_date" drop not null;
+-- -- alter table "public"."transactions" alter column "mpesa_transaction_id" drop not null;
+-- -- alter table "public"."transactions" add column "product_id" uuid
+-- --  null;
+-- -- alter table "public"."transactions"
+-- --   add constraint "transactions_product_id_fkey"
+-- --   foreign key ("product_id")
+-- --   references "public"."products"
+-- --   ("product_id") on update no action on delete no action;
+-- -- alter table "public"."transactions" rename column "product_id" to "order_id";
+-- -- alter table "public"."transactions" drop constraint "transactions_product_id_fkey";
+-- -- alter table "public"."transactions"
+-- --   add constraint "transactions_order_id_fkey"
+-- --   foreign key ("order_id")
+-- --   references "public"."orders"
+-- --   ("order_id") on update no action on delete no action;

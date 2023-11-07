@@ -1,0 +1,3 @@
+table:
+  name: variant_categories
+  schema: public

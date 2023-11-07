@@ -1,0 +1,3 @@
+table:
+  name: counties
+  schema: public
