@@ -23,6 +23,7 @@ exports.payAmount=async(req,res)=>{
     let url = "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
     let bs_short_code = config.shortcode;
     let passkey = config.passkey;
+    let callBackUrl=config.c2bCallback
     let officialPhoneNo=phone.substring(1)//left the first digit +
     let password = new Buffer.from(`${bs_short_code}${passkey}${timestamp}`).toString('base64');
     let transcation_type = "CustomerPayBillOnline";
@@ -30,7 +31,6 @@ exports.payAmount=async(req,res)=>{
     let partyA = `${officialPhoneNo}`; 
     let partyB = bs_short_code;
     let phoneNumber = `${officialPhoneNo}`;
-    let callBackUrl = "https://d1b6-196-191-60-168.ngrok-free.app/callback";
     let accountReference = `FredZonner`;
     let transaction_desc = "Testing"
     try {
@@ -54,11 +54,11 @@ exports.payAmount=async(req,res)=>{
             }
         })
      console.log(data)
-      const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:Date(timestamp) ,mpesa_transaction_id:data["CheckoutRequestID"], status:"unpaid",order_id:order_id})
-      console.log("the transaction is",transaction)
+    //   const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:Date(timestamp) ,mpesa_transaction_id:data["CheckoutRequestID"], status:"unpaid",order_id:order_id})
+    //   console.log("the transaction is",transaction)
      return  res.status(200).json({     
         "mpessa_transaction_id":data["CheckoutRequestID"],
-        "transaction_id":transaction
+        // "transaction_id":transaction
     })
     }catch(err){
         console.log(err);
@@ -69,7 +69,7 @@ exports.payAmount=async(req,res)=>{
     }
 }
 exports.mpessaCallBack=async(req,res)=>{
-      console.alert("let us procede")
+    consolee.log("let us procede")
     let body=req.body
     let {ResultCode,ResultDesc}=body.Body.stkCallback;
     let receipt,amount,phone,date=""    

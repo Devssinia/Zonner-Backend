@@ -7,7 +7,7 @@ import { file_upload } from   '../actions/file_upload.js'
 import { login } from   '../actions/login.js'
 import { testEvent } from '../actions/test_event'
 import {getOAuthToken} from '../actions/payments/generateToken.js'
-import * as transaction from '../actions/payments/c_to_b_payment'
+import * as transaction from '../actions/payments/c_to_b_payment.js'
 import { buisnessToCustomer } from '../actions/payments/b_to_c_payment.js'
 import { reset_password } from '../actions/update_password.js'
 const router = express.Router();
@@ -21,14 +21,15 @@ router.post('/vendor_signup', (req, res) => {vendor_signup(req, res)})
 router.post('/file_upload', (req, res) => {file_upload(req, res)})
 router.post("/stk",getOAuthToken,transaction.payAmount)
 router.post("/callback",getOAuthToken,transaction.mpessaCallBack)
-router.post("btoc",getOAuthToken,buisnessToCustomer)
+router.post("/btoc",getOAuthToken,buisnessToCustomer)
 router.post('/timeout_url', (req, res) => {
     console.log("--------------------Timeout -----------------")
     console.log(req.body)
 })
 
-router.post('/b2c_result_url', (req, res) => {
-    consosle.log("-------------------- B2C Result -----------------")
-    console.log(JSON.stringify(req.body.Result))
+router.post('/b2c_result_url',(req, res) => {
+    console.log("-------------------- B2C Result -----------------")
+    console.log( "the result is",JSON.stringify(req.body.Result))
 })
 export default router
+ 

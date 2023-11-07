@@ -25,7 +25,7 @@
         "migrate:status:prod": "npm run hasura:prod migrate status",
         "seed": "npm run hasura seeds apply",
         "rebuild": "sudo docker-compose build zonner_express_app && npm run dev",
-        "handle": "cd hasura && hasura metadata export --admin-secret 'secret' && hasura migrate create 'forced_migration' --from-server --admin-secret 'secret'"
+        "handle": "cd hasura && hasura metadata export --admin-secret 'OlfYeenaXko17zqI89K7N1rK40' && hasura migrate create 'forced_migration' --from-server --admin-secret 'OlfYeenaXko17zqI89K7N1rK40'"
     },
     "devDependencies": {
         "@babel/cli": "^7.13.10",
@@ -51,6 +51,7 @@
         "cloudinary": "^1.35.0",
         "cors": "^2.8.5",
         "cross-fetch": "^3.1.6",
+        "crypto": "^1.0.1",
         "dotenv": "^16.0.3",
         "events": "^3.3.0",
         "express": "^4.18.2",
@@ -62,7 +63,8 @@
         "node-fetch": "^2.6.11",
         "pm2": "^5.3.0",
         "prettyjson": "^1.2.5",
-        "sequelize": "^6.31.1"
+        "sequelize": "^6.31.1",
+        "uuid": "^9.0.1"
     },
     "directories": {
         "lib": "express"

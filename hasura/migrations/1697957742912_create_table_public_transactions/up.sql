@@ -1,1 +1,0 @@
-CREATE TABLE "public"."transactions" ("transaction_id" uuid NOT NULL, "phone_number" text NOT NULL, "status" text NOT NULL, "amount" text NOT NULL, "transaction_date" text NOT NULL, "mpesa_transaction_id" text NOT NULL, PRIMARY KEY ("transaction_id") );

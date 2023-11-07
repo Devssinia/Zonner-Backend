@@ -1,7 +1,0 @@
-table:
-  name: statuses
-  schema: public
-object_relationships:
-  - name: business
-    using:
-      foreign_key_constraint_on: business_id

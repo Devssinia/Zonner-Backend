@@ -30,6 +30,9 @@ sudo ufw allow 443
 sudo ufw allow 80
 sudo ufw allow 22
 sudo ufw allow 2000
+sudo ufw allow 3000
+sudo ufw allow 2001
+
 sudo ufw reload
 # Install PM2
 npm install pm2 -g

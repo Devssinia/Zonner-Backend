@@ -1,5 +1,5 @@
 import client from '../configuration/hasura_client'
-const UPDATE_PASSWORD = `
+const UPDATE_PASSWORD=`
 mutation UpdatePassword($phone_no: String!, $password: String!) {
   update_authentications(where: {phone_no: {_eq: $phone_no}}, _set: {password: $password}) {
     affected_rows
@@ -11,9 +11,6 @@ mutation UpdatePassword($phone_no: String!, $password: String!) {
   }
 }
 `
-
-
-
 const update_password = async (variables) => {
     try {
         console.log("still called")
@@ -23,6 +20,7 @@ const update_password = async (variables) => {
         console.log("password:", password);
         return password;
     } catch (error) {
+      
     console.log("error detected")
     }
 
