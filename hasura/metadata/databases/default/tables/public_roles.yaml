@@ -1,3 +1,11 @@
 table:
   name: roles
   schema: public
+array_relationships:
+  - name: authentications
+    using:
+      foreign_key_constraint_on:
+        column: role_id
+        table:
+          name: authentications
+          schema: public

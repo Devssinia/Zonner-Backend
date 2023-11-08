@@ -1,6 +1,16 @@
 table:
   name: businesses
   schema: public
+object_relationships:
+  - name: address
+    using:
+      foreign_key_constraint_on: address_id
+  - name: business_category
+    using:
+      foreign_key_constraint_on: business_category_id
+  - name: vendor
+    using:
+      foreign_key_constraint_on: vendor_id
 array_relationships:
   - name: business_addresses
     using:
@@ -8,4 +18,46 @@ array_relationships:
         column: business_id
         table:
           name: business_address
+          schema: public
+  - name: business_reviews
+    using:
+      foreign_key_constraint_on:
+        column: business_id
+        table:
+          name: business_reviews
+          schema: public
+  - name: businesses_favorites
+    using:
+      foreign_key_constraint_on:
+        column: business_id
+        table:
+          name: businesses_favorites
+          schema: public
+  - name: chats
+    using:
+      foreign_key_constraint_on:
+        column: bussiness_id
+        table:
+          name: chats
+          schema: public
+  - name: orders
+    using:
+      foreign_key_constraint_on:
+        column: business_id
+        table:
+          name: orders
+          schema: public
+  - name: products
+    using:
+      foreign_key_constraint_on:
+        column: businesses_id
+        table:
+          name: products
+          schema: public
+  - name: statuses
+    using:
+      foreign_key_constraint_on:
+        column: business_id
+        table:
+          name: statuses
           schema: public

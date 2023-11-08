@@ -20,6 +20,7 @@
 - "!include public_product_categories.yaml"
 - "!include public_product_reviews.yaml"
 - "!include public_products.yaml"
+- "!include public_rider_documents.yaml"
 - "!include public_riders.yaml"
 - "!include public_roles.yaml"
 - "!include public_statuses.yaml"

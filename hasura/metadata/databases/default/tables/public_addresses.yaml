@@ -1,3 +1,22 @@
 table:
   name: addresses
   schema: public
+object_relationships:
+  - name: authentication
+    using:
+      foreign_key_constraint_on: user_id
+array_relationships:
+  - name: businesses
+    using:
+      foreign_key_constraint_on:
+        column: address_id
+        table:
+          name: businesses
+          schema: public
+  - name: infos
+    using:
+      foreign_key_constraint_on:
+        column: info_address
+        table:
+          name: infos
+          schema: public
