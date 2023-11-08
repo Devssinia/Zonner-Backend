@@ -1,3 +1,15 @@
 table:
   name: wards
   schema: public
+object_relationships:
+  - name: county
+    using:
+      foreign_key_constraint_on: county_id
+array_relationships:
+  - name: business_addresses
+    using:
+      foreign_key_constraint_on:
+        column: ward_id
+        table:
+          name: business_address
+          schema: public
