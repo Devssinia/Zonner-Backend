@@ -21,7 +21,7 @@ const reset_password = async (req, res) => {
         console.log("new Password is", updated_password)
         if (updated_password==0) {
             res.status(400).json({
-                message: 'Password Reset Failed Check Phone_no',
+                message: 'Password Reset Failed try again',
             })
 
         }
