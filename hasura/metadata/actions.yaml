@@ -15,6 +15,10 @@ actions:
     definition:
       kind: synchronous
       handler: '{{ACTION_BASE_URL}}/login'
+  - name: reset_password
+    definition:
+      kind: synchronous
+      handler: https://02c4-196-188-33-67.ngrok-free.app/reset_password
   - name: rider_signup
     definition:
       kind: synchronous
@@ -34,4 +38,5 @@ custom_types:
     - name: MyMutationOutput
     - name: pay_output
     - name: SampleOutput
+    - name: ResetOutput
   scalars: []

@@ -30,6 +30,13 @@ type Mutation {
 }
 
 type Mutation {
+  reset_password(
+    phone_no: String!
+    new_password: String!
+  ): ResetOutput
+}
+
+type Mutation {
   rider_signup(
     full_name: String!
     email: String!
@@ -75,5 +82,9 @@ type pay_output {
 
 type SampleOutput {
   accessToken: String!
+}
+
+type ResetOutput {
+  message: String!
 }
 

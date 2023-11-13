@@ -14,14 +14,23 @@ const reset_password = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashed_password = await bcrypt.hash(new_password, salt)
         const password = hashed_password
-        console.log("good untill this")
 
-        const updated_password = await update_password({phone_no,password})
 
-        console.log("new Password is",updated_password)
-        return res.json({
-            message: 'Password Reseted Successfully',
-        })
+        const updated_password = await update_password({ phone_no, password })
+
+        console.log("new Password is", updated_password)
+        if (updated_password==0) {
+            res.status(400).json({
+                message: 'Password Reset Failed Check Phone_no',
+            })
+
+        }
+        else {
+            return res.status(200).json({
+                message: 'Password Reseted Successfully',
+            })
+        }
+
     } catch (error) {
         return res.status(400).json({
             message: error,
@@ -29,4 +38,4 @@ const reset_password = async (req, res) => {
     }
 }
 
-export {reset_password }
+export { reset_password }

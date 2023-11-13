@@ -16,7 +16,7 @@ const update_password = async (variables) => {
         console.log("still called")
         const data = await client.request(UPDATE_PASSWORD, variables);
         console.log("Data:", data);
-        const password = data?.['update_authentications']?.['returning'][0]?.["password"];
+        const password = data?.['update_authentications']?.["affected_rows"];
         console.log("password:", password);
         return password;
     } catch (error) {
