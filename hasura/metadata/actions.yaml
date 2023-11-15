@@ -3,6 +3,8 @@ actions:
     definition:
       kind: synchronous
       handler: '{{ACTION_BASE_URL}}/stk'
+    permissions:
+      - role: customer
   - name: customer_signup
     definition:
       kind: synchronous
@@ -18,7 +20,7 @@ actions:
   - name: reset_password
     definition:
       kind: synchronous
-      handler: https://02c4-196-188-33-67.ngrok-free.app/reset_password
+      handler: '{{ACTION_BASE_URL}}/reset_password'
   - name: rider_signup
     definition:
       kind: synchronous

@@ -15,7 +15,7 @@ services:
   zonner_graphql_engine:
     container_name: zonner_graphql_engine
     network_mode: host
-    image: hasura/graphql-engine:v2.20.0
+    image: hasura/graphql-engine:v2.35.0
     restart: always
     environment:
       HASURA_GRAPHQL_DATABASE_URL: ${POSTGRES_URI}

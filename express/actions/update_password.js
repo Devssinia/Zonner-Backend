@@ -14,14 +14,11 @@ const reset_password = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashed_password = await bcrypt.hash(new_password, salt)
         const password = hashed_password
-
-
         const updated_password = await update_password({ phone_no, password })
-
         console.log("new Password is", updated_password)
-        if (updated_password==0) {
+        if (updated_password==0){
             res.status(400).json({
-                message: 'Password Reset Failed try again',
+                message: 'Password Reset failed try again',
             })
 
         }
