@@ -3,11 +3,12 @@ const config = require('./config');
 import { insert_transaction,update_transaction } from '../../utilities/transactions';
 
 exports.payAmount=async(req,res)=>{
-    const phone=req.body.phone
-    const money=req.body.amount
-    const order_id=req.body.order_id;
+    const phone=req.body.input.phone
+    const money=req.body.input.amount
+    const order_id=req.body.input.order_id;
     if(!phone) return res.status(400).json({message:"Phone Number is required"})
     if(!money) return res.status(400).json({message:"Amount is required"})
+    if(!order_id) return res.status(400).json({message:"Order Id is required"})
     const date=new Date()
     const timestamp=
          date.getFullYear() +
