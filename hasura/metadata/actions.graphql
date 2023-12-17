@@ -33,7 +33,7 @@ type Mutation {
   reset_password(
     phone_no: String!
     new_password: String!
-  ): SampleOutput!
+  ): ResetOutput
 }
 
 type Mutation {
@@ -52,6 +52,11 @@ type Mutation {
     phone_no: String!
     password: String!
   ): signup_output!
+}
+
+input SampleInput {
+  username: String!
+  password: String!
 }
 
 type login_output {
@@ -76,6 +81,10 @@ type pay_output {
 }
 
 type SampleOutput {
+  accessToken: String!
+}
+
+type ResetOutput {
   message: String!
 }
 

@@ -20,35 +20,6 @@
           table:
             name: infos
             schema: public
-  select_permissions:
-    - role: customer
-      permission:
-        columns: []
-        filter: {}
-    - role: rider
-      permission:
-        columns: []
-        filter: {}
-    - role: vendor
-      permission:
-        columns:
-          - address_line_one
-          - address_line_two
-          - city
-          - country_code
-          - latitude
-          - longtude
-          - created_at
-          - updated_at
-          - adress_id
-          - county_id
-          - user_id
-          - ward_id
-        filter: {}
-    - role: zadmin
-      permission:
-        columns: []
-        filter: {}
 - table:
     name: authentications
     schema: public
@@ -119,7 +90,7 @@
       using:
         foreign_key_constraint_on: vendor_id
   array_relationships:
-    - name: buisness_addresses
+    - name: business_addresses
       using:
         foreign_key_constraint_on:
           column: business_id
@@ -200,7 +171,7 @@
     name: counties
     schema: public
   array_relationships:
-    - name: buisness_addresses
+    - name: business_addresses
       using:
         foreign_key_constraint_on:
           column: county_id
@@ -267,21 +238,6 @@
           table:
             name: wish_lists
             schema: public
-  select_permissions:
-    - role: customer
-      permission:
-        columns:
-          - status
-          - email
-          - full_name
-          - phone_no
-          - profile_image
-          - created_at
-          - updated_at
-          - customer_id
-        filter:
-          customer_id:
-            _eq: X-Hasura-Customer-Id
 - table:
     name: delivery_requests
     schema: public
@@ -314,17 +270,6 @@
           table:
             name: likes
             schema: public
-  computed_fields:
-    - name: dislike_count
-      definition:
-        function:
-          name: info_dislike_counter
-          schema: public
-    - name: like_count
-      definition:
-        function:
-          name: info_like_counter
-          schema: public
 - table:
     name: likes
     schema: public
@@ -342,6 +287,9 @@
     - name: chat
       using:
         foreign_key_constraint_on: chat_id
+- table:
+    name: new
+    schema: public
 - table:
     name: online_users
     schema: public
@@ -444,21 +392,6 @@
           table:
             name: wish_lists
             schema: public
-  select_permissions:
-    - role: anonymous
-      permission:
-        columns:
-          - quantity_in_stock
-          - product_discount_price
-          - product_price
-          - product_description
-          - product_name
-          - created_at
-          - updated_at
-          - businesses_id
-          - product_category_id
-          - product_id
-        filter: {}
 - table:
     name: rider_documents
     schema: public
@@ -469,39 +402,14 @@
 - table:
     name: riders
     schema: public
-  object_relationships:
-    - name: rider_document
+  array_relationships:
+    - name: rider_documents
       using:
         foreign_key_constraint_on:
           column: rider_id
           table:
             name: rider_documents
             schema: public
-  array_relationships:
-    - name: rider_address
-      using:
-        manual_configuration:
-          column_mapping:
-            rider_id: user_id
-          insertion_order: null
-          remote_table:
-            name: addresses
-            schema: public
-  select_permissions:
-    - role: rider
-      permission:
-        columns:
-          - rider_id
-          - full_name
-          - email
-          - phone_no
-          - is_verified
-          - created_at
-          - updated_at
-          - rider_profile
-        filter:
-          rider_id:
-            _eq: X-Hasura-rider-id
 - table:
     name: roles
     schema: public
@@ -563,18 +471,6 @@
           table:
             name: businesses
             schema: public
-  select_permissions:
-    - role: anonymous
-      permission:
-        columns:
-          - created_at
-          - email
-          - full_name
-          - phone_no
-          - status
-          - updated_at
-          - vendor_id
-        filter: {}
 - table:
     name: wards
     schema: public
@@ -583,7 +479,7 @@
       using:
         foreign_key_constraint_on: county_id
   array_relationships:
-    - name: buisness_addresses
+    - name: business_addresses
       using:
         foreign_key_constraint_on:
           column: ward_id
