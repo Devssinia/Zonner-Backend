@@ -12,8 +12,9 @@ const  customer_signup = async (req,res)=> {
     })
   }
   const salt = await bcrypt.genSalt(10)
+  const role_id="d6895ae5-c665-420a-ae0a-6efd81ee7506"
   const hashed_password = await bcrypt.hash(password, salt)
-  const user = await User({ phone_no })
+  const user = await User({ phone_no,role_id })
   if (user) {
     return res.status(400).json({
       message: 'User Already Exists',

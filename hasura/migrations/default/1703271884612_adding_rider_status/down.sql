@@ -1,0 +1,7 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- CREATE TYPE public.rider_status AS ENUM (
+--     'on-duty',
+--     'off-duty'
+--
+-- );

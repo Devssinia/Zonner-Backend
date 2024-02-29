@@ -20,3 +20,14 @@ array_relationships:
         table:
           name: likes
           schema: public
+computed_fields:
+  - name: number_of_dislike
+    definition:
+      function:
+        name: info_dislike_counter
+        schema: public
+  - name: number_of_likes
+    definition:
+      function:
+        name: info_like_counter
+        schema: public

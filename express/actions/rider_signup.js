@@ -13,7 +13,8 @@ const rider_signup = async (req, res) => {
     }
     const salt = await bcrypt.genSalt(10)
     const hashed_password = await bcrypt.hash(password, salt)
-    const user = await User({ phone_no })
+    const role_id="56a6ed6a-f320-4a46-bb5f-10c7ece29c7c"
+    const user = await User({ phone_no,role_id })
     console.log(user)
     if (user) {
       return res.status(400).json({

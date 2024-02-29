@@ -11,8 +11,9 @@ const vendor_signup = async (req, res) => {
       return res.status(400).json({ message: 'Please provide ALL the details' });
     }
     const salt = await bcrypt.genSalt(10);
+    const role_id="9268abe4-21b8-4839-8e1e-12c4322a63cd"
     const hashed_password = await bcrypt.hash(password, salt);
-    const user = await User({ phone_no });
+    const user = await User({ phone_no,role_id });
 
     if (user) {
       return res.status(400).json({ message: 'User Already Exists' });
@@ -39,10 +40,10 @@ const vendor_signup = async (req, res) => {
       return res.status(400).json({ message: 'Something went wrong' });
     }
 
-    return res.json({ success: 'Vendor Created Successfully' });
+    return res.json({success: 'Vendor Created Successfully' });
   } catch (error) {
     console.log(error)
-    return res.status(400).json({ message: error.message });
+    return res.status(400).json({message: error.message });
   }
 };
 
