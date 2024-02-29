@@ -1,7 +1,7 @@
 import client from '../configuration/hasura_client'
 const QUERY_USER_BY_PHONE_CUSTOMER =`
-query MyQuery($phone_no: String = "") {
-  authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq: "d6895ae5-c665-420a-ae0a-6efd81ee7506"}}}) {
+query MyQuery($phone_no: String = "",$role_id:uuid!) {
+  authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq:$role_id}}}) {
     password
     phone_no
     user_id
@@ -15,8 +15,8 @@ query MyQuery($phone_no: String = "") {
   `
 
   const QUERY_USER_BY_PHONE_VENDOR =`
-  query MyQuery($phone_no: String = "") {
-    authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq: "d6895ae5-c665-420a-ae0a-6efd81ee7506"}}}) {
+  query MyQuery($phone_no: String = "",$role_id:uuid!) {
+    authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq:$role_id}}}) {
       password
       phone_no
       user_id
@@ -30,8 +30,8 @@ query MyQuery($phone_no: String = "") {
     `
 
     const QUERY_USER_BY_PHONE_RIDER =`
-    query MyQuery($phone_no: String = "") {
-      authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq: "d6895ae5-c665-420a-ae0a-6efd81ee7506"}}}) {
+    query MyQuery($phone_no: String = "",$role_id:uuid!) {
+      authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq:$role_id}}}) {
         password
         phone_no
         user_id
