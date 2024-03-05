@@ -69,13 +69,18 @@ mutation MyMutation($phone_no:String!){
 
 const User = async (variables) => {
   let data;
-  if (variables.role_id =="d6895ae5-c665-420a-ae0a-6efd81ee7506") {
+  if (variables.role_id === "d6895ae5-c665-420a-ae0a-6efd81ee7506") {
     data = await client.request(QUERY_USER_BY_PHONE_CUSTOMER, variables);
-  } else if (variables.role_id =="9268abe4-21b8-4839-8e1e-12c4322a63cd") {
+  } else if (variables.role_id === "9268abe4-21b8-4839-8e1e-12c4322a63cd") {
     data = await client.request(QUERY_USER_BY_PHONE_VENDOR, variables);
-  } else if (variables.role_id =="56a6ed6a-f320-4a46-bb5f-10c7ece29c7c") {
+  } else if (variables.role_id === "56a6ed6a-f320-4a46-bb5f-10c7ece29c7c") {
     data = await client.request(QUERY_USER_BY_PHONE_RIDER, variables);
   }
+
+  if (!data || !data['authentications'] || data['authentications'].length === 0) {
+    return undefined;
+  }
+
   return data['authentications'][0];
 }
 
