@@ -26,6 +26,7 @@ type Mutation {
   login(
     phone_no: String!
     password: String!
+    role_name: String
   ): login_output!
 }
 
