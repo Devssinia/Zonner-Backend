@@ -1,7 +1,6 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { User, update_last_seen } from '../utilities/user'
-
 /**
  * Log in the user with the provided phone number and password.
  *
@@ -14,36 +13,36 @@ import { User, update_last_seen } from '../utilities/user'
  *   @property {string} access_token - The JWT access token.
  */
 
+
 const login = async (req, res) => {
   try {
-    const { phone_no, password} = req.body.input
-    if (!phone_no || !password ) {
+    const { phone_no, password,role_name} = req.body.input
+    if (!phone_no || !password ||role_name) {
       return res
         .status(400)
         .json({ message: 'Please provide Both Phone Number and Password' })
     }
       
-      // let role_id;
-      // if(role_name=="customer"){
-      //   role_id="d6895ae5-c665-420a-ae0a-6efd81ee7506"
-      //  }
-      // else if(role_name=="vendor"){
-      //   role_id="9268abe4-21b8-4839-8e1e-12c4322a63cd"
-      // }
-      // else if(role_name=="rider"){
-      //    role_id="56a6ed6a-f320-4a46-bb5f-10c7ece29c7c"
-      // }
-      // else {
+      let role_id;
+      if(role_name=="customer"){
+        role_id="d6895ae5-c665-420a-ae0a-6efd81ee7506"
+       }
+      else if(role_name=="vendor"){
+        role_id="9268abe4-21b8-4839-8e1e-12c4322a63cd"
+      }
+      else if(role_name=="rider"){
+         role_id="56a6ed6a-f320-4a46-bb5f-10c7ece29c7c"
+      }
+      else {
 
-      // }
-    const role_id="d6895ae5-c665-420a-ae0a-6efd81ee7506" 
+      }
     const user = await User({ phone_no,role_id })
-    console.log(user)
     
     if (!user || !user.password || !user.role) {
       return res.status(400).json({ message: 'Incorrect Credentials' })
     }
-
+    
+    console.log("the current user is",user)
     const is_valid_password = await bcrypt.compare(password, user.password)
     if (!is_valid_password) {
       return res.status(400).json({ message: 'Incorrect Credentials' })
