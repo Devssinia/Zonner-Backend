@@ -21,9 +21,9 @@ const vendor_signup = async (req, res) => {
 
     const vendor_email = await find_vendor({ email });
 
-    if (vendor_email) {
-      return res.status(400).json({ message: 'Your Email is Already Registered' });
-    }
+    // if (vendor_email) {
+    //   return res.status(400).json({ message: 'Your Email is Already Registered' });
+    // }
 
     const vendor = await insert_vendor({ phone_no, full_name, email });
 

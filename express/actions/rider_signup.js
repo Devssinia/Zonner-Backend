@@ -23,11 +23,11 @@ const rider_signup = async (req, res) => {
     }
     let rider_email = await find_rider({ email })
     console.log(rider_email)
-    if (rider_email) {
-      return res.status(400).json({
-        message: 'Your Email is Already Registered',
-      })
-    }
+    // if (rider_email) {
+    //   return res.status(400).json({
+    //     message: 'Your Email is Already Registered',
+    //   })
+    // }
     const rider = await insert_rider({ phone_no, full_name, email })
     if (!rider) {
       return res.status(400).json({
