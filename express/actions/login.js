@@ -17,7 +17,7 @@ import { User, update_last_seen } from '../utilities/user'
 const login = async (req, res) => {
   try {
     const { phone_no, password,role_name} = req.body.input
-    if (!phone_no || !password ||role_name) {
+    if (!phone_no || !password ||!role_name) {
       return res
         .status(400)
         .json({ message: 'Please provide Both Phone Number and Password' })
