@@ -1,4 +1,4 @@
-import client from '../configuration/hasura_client'
+import client from '../../configuration/hasura_client'
 const INSERT_TRANSACTION=`
 mutation MyMutation($phone_number: String, $amount: String, $transaction_date: String, $mpesa_transaction_id: String, $status:transaction_status!, $order_id: uuid!) {
   insert_transactions_one(object: {amount: $amount, mpesa_transaction_id: $mpesa_transaction_id, phone_number: $phone_number, order_id: $order_id, status: $status, transaction_date: $transaction_date}) {

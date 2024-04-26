@@ -1,4 +1,8 @@
 actions:
+  - name: chapa_accept_payment
+    definition:
+      kind: synchronous
+      handler: '{{ACTION_BASE_URL}}/chapa_accept_payment'
   - name: customer_pay
     definition:
       kind: synchronous
@@ -41,4 +45,5 @@ custom_types:
     - name: pay_output
     - name: SampleOutput
     - name: ResetOutput
+    - name: chapaOutput
   scalars: []

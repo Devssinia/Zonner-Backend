@@ -1,0 +1,6 @@
+
+send payment link
+devide payment to Owner and Buisnesses
+verify payment
+update the transaction
+integrate with frontend

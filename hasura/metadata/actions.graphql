@@ -1,4 +1,12 @@
 type Mutation {
+  chapa_accept_payment(
+    customer_id: String!
+    amount: String!
+    order_id: String!
+  ): chapaOutput
+}
+
+type Mutation {
   customer_pay(
     phone: String!
     amount: String!
@@ -86,6 +94,10 @@ type SampleOutput {
 }
 
 type ResetOutput {
+  message: String!
+}
+
+type chapaOutput {
   message: String!
 }
 
