@@ -1,6 +1,6 @@
 import { Chapa } from 'chapa-nodejs';
 import dotenv from 'dotenv';
-import { insert_transaction,update_transaction } from '../../../utilities/transactions';
+import { chapa_insert_transaction,update_transaction } from '../../../utilities/chapa/chapa_transaction.js';
 
 dotenv.config();
 const chapa = new Chapa({
@@ -32,7 +32,8 @@ const accept_chapa_payment = async (req, res) => {
     },
   });
  
-  const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:Date(timestamp) ,mpesa_transaction_id:data["CheckoutRequestID"], status:"unpaid",order_id:order_id})
+
+  const transaction= await  chapa_insert_transaction({amount: money,status:"pending",order_id:order_id,customer_id: customer_id,currency:"ETB",tx_ref:tx_ref,checkout_url:response.data["checkout_url"]})
   console.log( "the response is",response);
   return res.status(200).json({
     "message":"payment request successful"
@@ -57,5 +58,4 @@ catch(error){
 }
   
 }
-
 export {accept_chapa_payment,verify_chapa_payment}

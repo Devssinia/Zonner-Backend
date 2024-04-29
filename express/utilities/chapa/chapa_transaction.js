@@ -1,14 +1,9 @@
 import client from '../../configuration/hasura_client'
 const INSERT_TRANSACTION=`
-mutation MyMutation($phone_number: String, $amount: String, $transaction_date: String, $mpesa_transaction_id: String, $status:transaction_status!, $order_id: uuid!) {
-  insert_transactions_one(object: {amount: $amount, mpesa_transaction_id: $mpesa_transaction_id, phone_number: $phone_number, order_id: $order_id, status: $status, transaction_date: $transaction_date}) {
-    amount
-    mpesa_transaction_id
-    phone_number
-    order_id
+mutation MyMutation($amount:String!,$checkout_url:String!,$currency:String!,$customer_id:uuid!,$order_id:uuid!,$tx_ref:String!,$status:transaction_status!){
+  insert_transactions_one(object:{amount: $amount, checkout_url: $checkout_url, currency: $currency, customer_id: $customer_id, order_id: $order_id, tx_ref: $tx_ref,status:$status}) {
+    tx_ref
     status
-    transaction_date
-    transaction_id
   }
 }
 `
@@ -25,12 +20,12 @@ mutation UpdateTransaction ($transaction_id:uuid!,$status:transaction_status!) {
   }
 }
  `  
-const insert_transaction = async (variables) => {
+const chapa_insert_transaction = async (variables) => {
   const data = await client.request(INSERT_TRANSACTION,variables)
   console.log("inserted transaction is",data['insert_transactions_one']['transaction_id'])
   return data['insert_transactions_one']['transaction_id']
 }
-const update_transaction = async (variables) => {
+const chapa_update_transaction = async (variables) => {
     const data = await client.request(UPDATE_TRANSACTION, variables);
     console.log("Data:", data);
     const transaction_status = data?.['update_transactions_by_pk']?.['status'];
@@ -38,4 +33,4 @@ const update_transaction = async (variables) => {
     
     return transaction_status;
 }
-export { insert_transaction,update_transaction }
+export { chapa_insert_transaction,chapa_update_transaction }
