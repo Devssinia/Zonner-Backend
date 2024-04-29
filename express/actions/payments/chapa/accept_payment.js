@@ -28,7 +28,7 @@ const accept_chapa_payment = async (req, res) => {
     return_url: `${chapa_callback}/verify_chapa_payment`,
     customization: {
       title: 'Zonner Payment',
-      description: 'We are Zonners.',
+      description: 'We are Zonners',
     },
   });
  
@@ -41,7 +41,9 @@ const accept_chapa_payment = async (req, res) => {
   } catch (error) {
    console.error('Error:', error)
    return res.json({
-    "message":"payment request failed"
+    "message":"payment request failed",
+    "checkoutUrl":response.data["checkout_url"],
+    "tx_ref":tx_ref,
   })
   }
 };
