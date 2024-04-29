@@ -35,12 +35,12 @@ const accept_chapa_payment = async (req, res) => {
 
   const transaction= await  chapa_insert_transaction({amount: money,status:"success",order_id:order_id,customer_id: customer_id,currency:"ETB",tx_ref:tx_ref,checkout_url:response.data["checkout_url"]})
   console.log( "the response is",response);
-  return res.status(200).json({
+  return res.json({
     "message":"payment request successful"
   })
   } catch (error) {
    console.error('Error:', error)
-   return res.status(500).json({
+   return res.json({
     "message":"payment request failed"
   })
   }
