@@ -13,9 +13,9 @@ const accept_chapa_payment = async (req, res) => {
 //   const money=req.body.input.amount
 //   const order_id=req.body.input.order_id;
 //   const customer_id=req.body.input.customer_id;
-  const money=req.body.amount
-  const order_id=req.body.order_id;
-  const customer_id=req.body.customer_id;
+  const money=req.body.input.amount
+  const order_id=req.body.input.order_id;
+  const customer_id=req.body.input.customer_id;
   try {
     const response = await chapa.mobileInitialize({
     first_name: 'John',
@@ -33,7 +33,7 @@ const accept_chapa_payment = async (req, res) => {
   });
  
 
-  const transaction= await  chapa_insert_transaction({amount: money,status:"pending",order_id:order_id,customer_id: customer_id,currency:"ETB",tx_ref:tx_ref,checkout_url:response.data["checkout_url"]})
+  const transaction= await  chapa_insert_transaction({amount: money,status:"success",order_id:order_id,customer_id: customer_id,currency:"ETB",tx_ref:tx_ref,checkout_url:response.data["checkout_url"]})
   console.log( "the response is",response);
   return res.status(200).json({
     "message":"payment request successful"
