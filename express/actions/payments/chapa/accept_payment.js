@@ -28,7 +28,7 @@ const accept_chapa_payment = async (req, res) => {
     return_url: `${chapa_callback}/verify_chapa_payment`,
     customization: {
       title: 'Zonner Payment',
-      description: 'We are Zonners.Rely on us.',
+      description: 'We are Zonners.',
     },
   });
  
