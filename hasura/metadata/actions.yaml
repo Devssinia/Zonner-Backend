@@ -29,6 +29,10 @@ actions:
     definition:
       kind: synchronous
       handler: '{{ACTION_BASE_URL}}/rider_signup'
+  - name: sendSms
+    definition:
+      kind: synchronous
+      handler: https://5fbd-51-159-197-229.ngrok-free.app/sendSms
   - name: vendor_signup
     definition:
       kind: synchronous
@@ -46,4 +50,5 @@ custom_types:
     - name: SampleOutput
     - name: ResetOutput
     - name: chapaOutput
+    - name: SmsOutput
   scalars: []

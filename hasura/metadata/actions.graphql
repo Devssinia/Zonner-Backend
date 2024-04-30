@@ -55,6 +55,13 @@ type Mutation {
 }
 
 type Mutation {
+  sendSms(
+    phone: String!
+    message: String!
+  ): SmsOutput
+}
+
+type Mutation {
   vendor_signup(
     full_name: String!
     email: String!
@@ -101,5 +108,9 @@ type chapaOutput {
   message: String!
   checkoutUrl: String!
   tx_ref: String!
+}
+
+type SmsOutput {
+  message: String!
 }
 

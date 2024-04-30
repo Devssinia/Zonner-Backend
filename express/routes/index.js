@@ -11,6 +11,7 @@ import * as transaction from '../actions/payments/c_to_b_payment.js'
 import { buisnessToCustomer } from '../actions/payments/b_to_c_payment.js'
 import { reset_password } from '../actions/update_password.js'
 import {accept_chapa_payment,verify_chapa_payment} from '../actions/payments/chapa/accept_payment.js'
+import { sendSms } from '../utilities/sms.js'
 const router = express.Router();
 dotenvConfig()
 router.post('/login', (req, res) => {login(req, res)})
@@ -23,9 +24,10 @@ router.post('/file_upload', (req, res) => {file_upload(req, res)})
 router.post("/stk",getOAuthToken,transaction.payAmount)
 router.post("/callback",getOAuthToken,transaction.mpessaCallBack)
 router.post("/btoc",getOAuthToken,buisnessToCustomer)
+
 router.post("/chapa_accept_payment",(req,res)=>accept_chapa_payment(req,res))
 router.post("/verify_chapa_payment",(req,res)=>verify_chapa_payment(req,res))
-
+router.post("/sendSms",(req,res)=>sendSms(req,res)),
 router.post('/timeout_url', (req, res) => {
     console.log("--------------------Timeout -----------------")
     console.log(req.body)
