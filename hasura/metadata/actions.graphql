@@ -99,7 +99,7 @@ type ResetOutput {
 
 type chapaOutput {
   message: String!
-  checkoutUrl: String
-  tx_ref: String
+  checkoutUrl: String!
+  tx_ref: String!
 }
 
