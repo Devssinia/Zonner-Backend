@@ -26,7 +26,7 @@ router.post("/callback",getOAuthToken,transaction.mpessaCallBack)
 router.post("/btoc",getOAuthToken,buisnessToCustomer)
 
 router.post("/chapa_accept_payment",(req,res)=>accept_chapa_payment(req,res))
-router.post("/verify_chapa_payment",(req,res)=>verify_chapa_payment(req,res))
+router.get("/verify_chapa_payment",(req,res)=>verify_chapa_payment(req,res))
 router.post("/sendSms",(req,res)=>sendSms(req,res)),
 router.post('/timeout_url', (req, res) => {
     console.log("--------------------Timeout -----------------")
