@@ -24,7 +24,7 @@ const accept_chapa_payment = async (req, res) => {
     currency: 'ETB',
     amount: money,
     tx_ref: tx_ref,
-    callback_url: `${chapa_callback}/verify_chapa_payment`,
+    // callback_url: `${chapa_callback}/verify_chapa_payment`,
   //  return_url: `${chapa_callback}/verify_chapa_payment`,
     customization: {
       title: 'Zonner Payment',
