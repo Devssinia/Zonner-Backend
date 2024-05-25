@@ -16,6 +16,7 @@ const accept_chapa_payment = async (req, res) => {
   const money=req.body.input.amount
   const order_id=req.body.input.order_id;
   const customer_id=req.body.input.customer_id;
+  
   try {
     const response = await chapa.mobileInitialize({
     first_name: 'John',

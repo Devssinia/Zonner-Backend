@@ -1,7 +1,7 @@
 const axios=require('axios')
  const config = require('./config');
 const getOAuthToken=async(req,res,next)=>{
-const url="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+const url=config.authUrl;
 const consumer_key = config.consumerKey;
 const consumer_secret = config.secret;
   console.log("consumer key is ",consumer_key)
@@ -20,7 +20,7 @@ const consumer_secret = config.secret;
 
     }catch(err){
      console.log("the error is",err)
-        return res.send({
+        return res.status(404).send({
             success:false,
             message:err.message
         });

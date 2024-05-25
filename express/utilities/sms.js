@@ -6,9 +6,7 @@ const sendSms = async (req, res) => {
          
         const phone = req.body.input.phone;
         const message = req.body.input.message;
-
         console.log(`Twilio account info: ${twilioPhone}`);
-
         const client = require('twilio')(accountSid, authToken);
 
         await client.messages.create({

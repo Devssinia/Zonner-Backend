@@ -14,7 +14,7 @@ query MyQuery($phone_no: String = "",$role_id:uuid!) {
 }
   `
 
-  const QUERY_USER_BY_PHONE_VENDOR =`
+const QUERY_USER_BY_PHONE_VENDOR =`
   query MyQuery($phone_no: String = "",$role_id:uuid!) {
     authentications(where: {phone_no: {_eq: $phone_no}, _and: {role_id: {_eq:$role_id}}}) {
       password

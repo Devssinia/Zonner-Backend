@@ -11,6 +11,7 @@ type Mutation {
     phone: String!
     amount: String!
     order_id: String!
+    customer_id: String!
   ): pay_output!
 }
 
@@ -92,8 +93,8 @@ type MyMutationOutput {
 }
 
 type pay_output {
-  mpessa_transaction_id: String
-  transaction_id: String
+  success: String!
+  message: String!
 }
 
 type SampleOutput {

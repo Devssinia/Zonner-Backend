@@ -12,6 +12,7 @@ import { buisnessToCustomer } from '../actions/payments/b_to_c_payment.js'
 import { reset_password } from '../actions/update_password.js'
 import {accept_chapa_payment,verify_chapa_payment} from '../actions/payments/chapa/accept_payment.js'
 import { sendSms } from '../utilities/sms.js'
+import {checkStatus} from '../actions/payments/check_status.js'
 const router = express.Router();
 dotenvConfig()
 router.post('/login', (req, res) => {login(req, res)})
@@ -22,7 +23,9 @@ router.post('/reset_password', (req, res) => {reset_password(req, res)})
 router.post('/vendor_signup', (req, res) => {vendor_signup(req, res)})
 router.post('/file_upload', (req, res) => {file_upload(req, res)})
 router.post("/stk",getOAuthToken,transaction.payAmount)
-router.post("/callback",getOAuthToken,transaction.mpessaCallBack)
+router.post("/checkStatus",getOAuthToken,checkStatus)
+
+router.post("/callback",getOAuthToken,transaction.mpesaCallBack)
 router.post("/btoc",getOAuthToken,buisnessToCustomer)
 
 router.post("/chapa_accept_payment",(req,res)=>accept_chapa_payment(req,res))

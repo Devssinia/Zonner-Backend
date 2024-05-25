@@ -7,8 +7,7 @@ mutation MyMutation($email: String = "", $full_name: String = "", $phone_no: Str
     }
   } 
   `
-
-
+  
 const FIND_RIDER=`
 query MyQuery($email: String = "") {
     vendors(where: {email: {_eq: $email}}) {

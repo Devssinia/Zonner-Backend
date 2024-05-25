@@ -28,4 +28,5 @@ const find_rider = async (variables) => {
     }
 
 
+    
 export { insert_rider,find_rider }
