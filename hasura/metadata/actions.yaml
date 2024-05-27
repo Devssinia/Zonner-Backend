@@ -6,7 +6,7 @@ actions:
   - name: customer_pay
     definition:
       kind: synchronous
-      handler: '{{ACTION_BASE_URL}}/stk'
+      handler: https://ada4-51-159-198-48.ngrok-free.app/stk
     permissions:
       - role: customer
   - name: customer_signup

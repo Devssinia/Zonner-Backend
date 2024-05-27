@@ -39,6 +39,18 @@ mutation UpdateTransaction ($transaction_id:uuid!,$status:transaction_status!) {
   }
 }
  `
+const UPDATE_ORDER=`
+mutation MyMutation2($order_id:uuid!,$transaction_status:transaction_status!) {
+  update_orders_by_pk(pk_columns: {order_id: $order_id}, _set: {transaction_status: $transaction_status}) {
+    order_id
+    order_status
+    transaction_status
+    customer_id
+  }
+}
+
+`
+
 const insert_transaction = async (variables) => {
   const data = await client.request(INSERT_TRANSACTION,variables)
   console.log("inserted transaction is",data['insert_transactions_one']['transaction_id'])
@@ -52,6 +64,16 @@ const update_transaction = async (variables) => {
     
     return transaction_status;
 }
+const update_order = async (variables) => {
+  const data = await client.request(UPDATE_ORDER, variables);
+  console.log("Data:", data);
+  const order_status = data?.['update_orders_by_pk']?.['transaction_status'];
+  console.log("Customer ID:", order_status);
+  
+  return order_status;
+}
+
+
 
 const update_mpsesa_transaction = async (variables) => {
   const data = await client.request(UPDATE_MPESA_TRANSACTION, variables);
@@ -62,4 +84,4 @@ const update_mpsesa_transaction = async (variables) => {
   return transaction_status;
 }
 
-export { insert_transaction,update_transaction,update_mpsesa_transaction}
+export { insert_transaction,update_transaction,update_mpsesa_transaction,update_order}

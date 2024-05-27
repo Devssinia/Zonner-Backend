@@ -1,7 +1,7 @@
 const axios = require('axios');
 const config = require('./config');
 
-import { insert_transaction,update_mpsesa_transaction} from '../../utilities/transactions';
+import { insert_transaction,update_mpsesa_transaction,update_order} from '../../utilities/transactions';
 import {checkStatus} from './check_status.js'
 exports.payAmount=async(req,res)=>{
     const phone=req.body.input.phone
@@ -11,6 +11,8 @@ exports.payAmount=async(req,res)=>{
     if(!phone) return res.status(400).json({message:"Phone Number is required"})
     if(!money) return res.status(400).json({message:"Amount is required"})
     if(!order_id) return res.status(400).json({message:"Order Id is required"})
+    if(!customer_id) return res.status(400).json({message:"Customer Id is required"})
+  
     const date=new Date()
     const timestamp=
          date.getFullYear() +
@@ -46,7 +48,7 @@ exports.payAmount=async(req,res)=>{
             "Password":password,
             "Timestamp":timestamp,
             "TransactionType": transcation_type,
-            "Amount": amount,
+            "Amount":amount,
             "PartyA": partyA,
             "PartyB": partyB,
             "PhoneNumber":phoneNumber,
@@ -63,9 +65,10 @@ exports.payAmount=async(req,res)=>{
       const isoDateWithOffset = date.toISOString();
       const transaction= await  insert_transaction({phone_number:phoneNumber,amount: amount,transaction_date:isoDateWithOffset,mpesa_transaction_id:data["CheckoutRequestID"], status:"pending",order_id:order_id,customer_id:customer_id})
       
-      await new Promise((resolve) => setTimeout(resolve, 20000));
+      await new Promise((resolve) => setTimeout(resolve, 30000));
         console.log("now Before calling");
-     const status=await checkStatus(data["CheckoutRequestID"]);
+        const status=await checkStatus(data["CheckoutRequestID"]);
+         await update_order({order_id:order_id,transaction_status:status})
          console.log("now after calling");
         return res.status(200).json({
             "success": true,
